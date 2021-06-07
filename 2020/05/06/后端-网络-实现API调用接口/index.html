@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="热爱" />
+   
+  <meta name="description" content="精益求精" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    实现 API 调用接口 |  Felix Cai
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/myimages/sun.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      <canvas class="fireworks"></canvas>
+      <style>
+        .fireworks {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 99999;
+          pointer-events: none;
+        }
+      </style>
+      
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-后端-网络-实现API调用接口"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  实现 API 调用接口
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/05/06/%E5%90%8E%E7%AB%AF-%E7%BD%91%E7%BB%9C-%E5%AE%9E%E7%8E%B0API%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3/" class="article-date">
+  <time datetime="2020-05-06T14:40:38.000Z" itemprop="datePublished">2020-05-06</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a> / <a class="article-category-link" href="/categories/%E5%90%8E%E7%AB%AF/%E7%BD%91%E7%BB%9C/">网络</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">4 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>阿里云Apsara Clouder专项技能认证课程 《实现 API 调用接口》笔记</p>
+<p>讲解了API接口是如何调用的（阿里云接口为例）</p>
+<span id="more"></span>
+
+<h1 id="实现-API-调用接口"><a href="#实现-API-调用接口" class="headerlink" title="实现 API 调用接口"></a>实现 API 调用接口</h1><h2 id="API-简介"><a href="#API-简介" class="headerlink" title="API 简介"></a>API 简介</h2><h3 id="API-的概念"><a href="#API-的概念" class="headerlink" title="API 的概念"></a>API 的概念</h3><p>API(Application Programming Interface) </p>
+<p>应用程序编程接口是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一次例程的能力，而又无需访问源码或理解内部工作机制的细节。</p>
+<h3 id="API-的特点"><a href="#API-的特点" class="headerlink" title="API 的特点"></a>API 的特点</h3><ul>
+<li>一个明确定义的接口，可以为其他软件提供特定服务。</li>
+<li>可以小到只包含一个单独的函数，也可以大到包含数以百计的类、方法、全局函数、数据类型、枚举类型和常量等。</li>
+<li>可以小到只包含一个单独的函数，也可以大到包含数以百计的类、方法、全局函数、数据类型、枚举类型和常量等。</li>
+<li>API 的实现是私有的，也可以是开源的。</li>
+</ul>
+<h3 id="API-的分类"><a href="#API-的分类" class="headerlink" title="API 的分类"></a>API 的分类</h3><ul>
+<li><p>面向对象语言的 API</p>
+<blockquote>
+<p>例：Java API 列表</p>
+</blockquote>
+</li>
+<li><p>库与框架的 API </p>
+<blockquote>
+<p>例：Windows API、Windows DirectX</p>
+</blockquote>
+</li>
+<li><p>API 与协议</p>
+<blockquote>
+<p>例：LDAP 应用程序接口</p>
+</blockquote>
+</li>
+<li><p>API 与设备接口</p>
+<blockquote>
+<p>例：PC BIOS 调用接口、ASPI for SCSI 设备接口</p>
+</blockquote>
+</li>
+<li><p>Web API</p>
+<blockquote>
+<p>例：Google 地图 API、新浪微博 API、阿里云 API 市场</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="为什么要使用-API"><a href="#为什么要使用-API" class="headerlink" title="为什么要使用 API"></a>为什么要使用 API</h3><ul>
+<li>快速扩展功能</li>
+<li>避免“造轮子”，提高开发效率</li>
+<li>降低模块之间的耦合度</li>
+</ul>
+<h2 id="API的请求与认证"><a href="#API的请求与认证" class="headerlink" title="API的请求与认证"></a>API的请求与认证</h2><h3 id="Web-API-协议及-HTTP-请求"><a href="#Web-API-协议及-HTTP-请求" class="headerlink" title="Web API 协议及 HTTP 请求"></a>Web API 协议及 HTTP 请求</h3><p>好处：客户端与服务端的开发语言无关，利于微服务和分布式的开发。</p>
+<ul>
+<li>客户端向服务器发送一个请求</li>
+<li>服务器给客户端一个响应，告诉客户端是否可以完成它请求的工作</li>
+</ul>
+<h4 id="HTTP请求包含的内容"><a href="#HTTP请求包含的内容" class="headerlink" title="HTTP请求包含的内容"></a>HTTP请求包含的内容</h4><p>URL（API调用地址）、请求方式、Headers（请求头）、Body（请求主体）</p>
+<ul>
+<li><p>Headers（请求头）</p>
+<blockquote>
+<p>提供了请求的元信息，是一个简单的项目列表，其中有客户端发送请求的时间和请求主体的大小、身份认证等信息。</p>
+</blockquote>
+</li>
+<li><p>Body（请求主体）</p>
+<blockquote>
+<p>包含了客户端希望发送给服务器的数据。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="API-请求方式"><a href="#API-请求方式" class="headerlink" title="API 请求方式"></a>API 请求方式</h4><p>常见的主要有四种：</p>
+<ul>
+<li>GET  请求服务器获取一个资源</li>
+<li>POST 请求服务器创建一个新的资源</li>
+<li>PUT 请求服务器编辑或更新一个已存在的资源</li>
+<li>DELETE 请求服务器删除一个资源</li>
+</ul>
+<h4 id="返回状态码"><a href="#返回状态码" class="headerlink" title="返回状态码"></a>返回状态码</h4><ul>
+<li>成功调用 API 后会有返回一个状体码，例如成功返回 2xx;</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>HTTP 状态码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200 OK - [GET]</td>
+<td>服务器成功返回用户请求的数据</td>
+</tr>
+<tr>
+<td>204 NO CONNTENT - [DELETE]</td>
+<td>用户数据删除成功</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>未调用成功，会返回 5xx 表示服务不可用；</p>
+<blockquote>
+<p>例如：500 API 网关内部错误/底层服务错误；503 服务不可用，504 后端服务超时。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="返回数据格式"><a href="#返回数据格式" class="headerlink" title="返回数据格式"></a>返回数据格式</h4><ul>
+<li><p>json 格式（多采用）</p>
+<ul>
+<li><p>表示对象，键值对类型</p>
+<blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">&quot;name&quot;</span>:<span class="string">&quot;a&quot;</span>,<span class="attr">&quot;age&quot;</span>:<span class="number">20</span>&#125;</span><br></pre></td></tr></table></figure></blockquote>
+</li>
+<li><p>表示数组，采用方括号</p>
+</li>
+<li><p>如下：</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;code&quot;</span>:<span class="number">2000</span>,</span><br><span class="line">    <span class="attr">&quot;data&quot;</span>:[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;a&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;age&quot;</span>:<span class="number">19</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;b&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;age&quot;</span>:<span class="number">20</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>xml 格式</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">country</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>中国<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">province</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>河南<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">province</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">province</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>广州<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">province</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">country</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="API-身份认证及签名认证"><a href="#API-身份认证及签名认证" class="headerlink" title="API 身份认证及签名认证"></a>API 身份认证及签名认证</h4><ul>
+<li>API 有不同的认证方式</li>
+</ul>
+<p>再阿里云中，有两种认证方式</p>
+<ul>
+<li><p>简单认证，基于 APPCODE 方式</p>
+<blockquote>
+<p>如果 APPCODE 获取 API 访问权限</p>
+</blockquote>
+<ul>
+<li>请求头 Header 添加 Authorization 字段；</li>
+<li>配置 Authorization 字段的值为 “APPCODE + 半角空格 + APPCODE 值”</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Authorization:APPCODE 123456789ABC</span><br></pre></td></tr></table></figure></li>
+<li><p>签名认证方式，AppKey &amp; AppSecret</p>
+<blockquote>
+<p>AppKey 和 AppSecret 相当于当前账户的另外一套账号和密码机制，再控制台找到对于的 AppKey 和 AppSecret</p>
+<p>具体使用方式在调用时会有官网介绍。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="API-调试和调用（阿里云）"><a href="#API-调试和调用（阿里云）" class="headerlink" title="API 调试和调用（阿里云）"></a>API 调试和调用（阿里云）</h2><h3 id="API-调试"><a href="#API-调试" class="headerlink" title="API 调试"></a>API 调试</h3><p>阿里云 api 市场提供在线调试功能</p>
+<h3 id="API-调用步骤"><a href="#API-调用步骤" class="headerlink" title="API 调用步骤"></a>API 调用步骤</h3><p>获取 api 文档–创建应用–获取授权–调用 api</p>
+<h3 id="调用-API"><a href="#调用-API" class="headerlink" title="调用 API"></a>调用 API</h3><p>调用 api 三个基础条件:</p>
+<ul>
+<li>api</li>
+<li>应用 app</li>
+<li>api 和 app 的权限关系</li>
+</ul>
+<h3 id="API-调用注意事项"><a href="#API-调用注意事项" class="headerlink" title="API 调用注意事项"></a>API 调用注意事项</h3><ul>
+<li>每个账号下 APP 的个数上限为10个,app 名称应用为账号下唯一</li>
+<li>调用 api 的流控限制为,单个 ip,qps 不超过100</li>
+<li>用户有权操作购买的 api 与 app 的授权和解除授权.由服务提供方授权给你的 app 的api,用户无权操作解除授权</li>
+<li>用户的请求需要包含签名信息</li>
+</ul>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://caijiyang.gitee.io/2020/05/06/%E5%90%8E%E7%AB%AF-%E7%BD%91%E7%BB%9C-%E5%AE%9E%E7%8E%B0API%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/" rel="tag">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/05/10/%E5%90%8E%E7%AB%AF-Python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Python学习路线-Python语言基础-1
+          
+        </div>
+      </a>
+    
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "NROIU1sB2XHb4tYuePRTklUF-gzGzoHsz",
+    app_key: "u9t9Ih6qJ1xOPEHKMU2rkAD6",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2021
+        <i class="ri-heart-fill heart_icon"></i> 蔡济阳
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/myimages/sun.svg" alt="Felix Cai"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/myimages/AliPay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/myimages/WeChat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script>
+
+<script src="/js/clickBoom1.js"></script>
+
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+<script src="/js/dz.js"></script>
+
+
+
+    
+  </div>
+</body>
+
+</html>
