@@ -17,12 +17,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"felixcjy.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"caijiyang.gitee.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="Spring Boot 在启动的时候会干这几件事情：  Spring Boot 在启动时会去依赖的 Starter 包中寻找 resources&#x2F;META-INF&#x2F;spring.factories 文件，然后根据文件中配置的 Jar 包去扫描项目所依赖的 Jar 包。 根据 spring.factories 配置加载 AutoConfigure 类 根据 @Conditiona">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Boot Starter 的工作原理">
-<meta property="og:url" content="https://felixcjy.cn/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.3%20SpringBoot/SpringBootStarter%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:url" content="http://caijiyang.gitee.io/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.3%20SpringBoot/SpringBootStarter%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="软件工程学习记录">
 <meta property="og:description" content="Spring Boot 在启动的时候会干这几件事情：  Spring Boot 在启动时会去依赖的 Starter 包中寻找 resources&#x2F;META-INF&#x2F;spring.factories 文件，然后根据文件中配置的 Jar 包去扫描项目所依赖的 Jar 包。 根据 spring.factories 配置加载 AutoConfigure 类 根据 @Conditiona">
 <meta property="og:locale" content="zh_CN">
@@ -34,11 +34,11 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://felixcjy.cn/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.3%20SpringBoot/SpringBootStarter%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+<link rel="canonical" href="http://caijiyang.gitee.io/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.3%20SpringBoot/SpringBootStarter%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://felixcjy.cn/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.3%20SpringBoot/SpringBootStarter%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/","path":"2022/02/20/1 后端/1.1 Java/1.1.3 SpringBoot/SpringBootStarter的工作原理/","title":"Spring Boot Starter 的工作原理"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://caijiyang.gitee.io/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.3%20SpringBoot/SpringBootStarter%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/","path":"2022/02/20/1 后端/1.1 Java/1.1.3 SpringBoot/SpringBootStarter的工作原理/","title":"Spring Boot Starter 的工作原理"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Spring Boot Starter 的工作原理 | 软件工程学习记录</title>
@@ -197,7 +197,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://felixcjy.cn/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.3%20SpringBoot/SpringBootStarter%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://caijiyang.gitee.io/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.3%20SpringBoot/SpringBootStarter%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/myimages/Pixels_trophy.png">
@@ -304,7 +304,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://felixcjy.cn/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.3%20SpringBoot/SpringBootStarter%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" title="Spring Boot Starter 的工作原理">https://felixcjy.cn/2022/02/20/1 后端/1.1 Java/1.1.3 SpringBoot/SpringBootStarter的工作原理/</a>
+      <a href="http://caijiyang.gitee.io/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.3%20SpringBoot/SpringBootStarter%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" title="Spring Boot Starter 的工作原理">http://caijiyang.gitee.io/2022/02/20/1 后端/1.1 Java/1.1.3 SpringBoot/SpringBootStarter的工作原理/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN,en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！

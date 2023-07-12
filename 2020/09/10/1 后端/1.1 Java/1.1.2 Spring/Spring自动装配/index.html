@@ -17,12 +17,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"felixcjy.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"caijiyang.gitee.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="Spring 在 Bean 与 Bean 之间建立依赖关系的行为称为“装配”。 Spring 的 IOC 容器虽然功能强大，但它本身不过只是一个空壳而已，它自己并不能独自完成装配工作。需要我们主动将 Bean 放进去，并告诉它 Bean 和 Bean 之间的依赖关系，它才能按照我们的要求完成装配工作。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring 自动装配">
-<meta property="og:url" content="https://felixcjy.cn/2020/09/10/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.2%20Spring/Spring%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/index.html">
+<meta property="og:url" content="http://caijiyang.gitee.io/2020/09/10/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.2%20Spring/Spring%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/index.html">
 <meta property="og:site_name" content="软件工程学习记录">
 <meta property="og:description" content="Spring 在 Bean 与 Bean 之间建立依赖关系的行为称为“装配”。 Spring 的 IOC 容器虽然功能强大，但它本身不过只是一个空壳而已，它自己并不能独自完成装配工作。需要我们主动将 Bean 放进去，并告诉它 Bean 和 Bean 之间的依赖关系，它才能按照我们的要求完成装配工作。">
 <meta property="og:locale" content="zh_CN">
@@ -33,11 +33,11 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://felixcjy.cn/2020/09/10/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.2%20Spring/Spring%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/">
+<link rel="canonical" href="http://caijiyang.gitee.io/2020/09/10/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.2%20Spring/Spring%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://felixcjy.cn/2020/09/10/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.2%20Spring/Spring%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/","path":"2020/09/10/1 后端/1.1 Java/1.1.2 Spring/Spring自动装配/","title":"Spring 自动装配"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://caijiyang.gitee.io/2020/09/10/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.2%20Spring/Spring%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/","path":"2020/09/10/1 后端/1.1 Java/1.1.2 Spring/Spring自动装配/","title":"Spring 自动装配"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Spring 自动装配 | 软件工程学习记录</title>
@@ -197,7 +197,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://felixcjy.cn/2020/09/10/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.2%20Spring/Spring%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/">
+    <link itemprop="mainEntityOfPage" href="http://caijiyang.gitee.io/2020/09/10/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.2%20Spring/Spring%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/myimages/Pixels_trophy.png">
@@ -335,7 +335,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://felixcjy.cn/2020/09/10/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.2%20Spring/Spring%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/" title="Spring 自动装配">https://felixcjy.cn/2020/09/10/1 后端/1.1 Java/1.1.2 Spring/Spring自动装配/</a>
+      <a href="http://caijiyang.gitee.io/2020/09/10/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.2%20Spring/Spring%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/" title="Spring 自动装配">http://caijiyang.gitee.io/2020/09/10/1 后端/1.1 Java/1.1.2 Spring/Spring自动装配/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN,en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
