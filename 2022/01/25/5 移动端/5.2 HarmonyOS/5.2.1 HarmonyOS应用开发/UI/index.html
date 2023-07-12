@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"felixcjy.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="UI 界面方面的细节问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Harmony应用开发基础-UI">
+<meta property="og:url" content="https://felixcjy.cn/2022/01/25/5%20%E7%A7%BB%E5%8A%A8%E7%AB%AF/5.2%20HarmonyOS/5.2.1%20HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/UI/index.html">
+<meta property="og:site_name" content="软件工程学习记录">
+<meta property="og:description" content="UI 界面方面的细节问题。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-25T09:22:20.000Z">
+<meta property="article:modified_time" content="2023-07-12T03:32:58.576Z">
+<meta property="article:author" content="Felix&#x2F;蔡济阳">
+<meta property="article:tag" content="HarmonyOS应用开发">
+<meta property="article:tag" content="移动端">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://felixcjy.cn/2022/01/25/5%20%E7%A7%BB%E5%8A%A8%E7%AB%AF/5.2%20HarmonyOS/5.2.1%20HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/UI/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://felixcjy.cn/2022/01/25/5%20%E7%A7%BB%E5%8A%A8%E7%AB%AF/5.2%20HarmonyOS/5.2.1%20HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/UI/","path":"2022/01/25/5 移动端/5.2 HarmonyOS/5.2.1 HarmonyOS应用开发/UI/","title":"Harmony应用开发基础-UI"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Harmony应用开发基础-UI | 软件工程学习记录</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?13b96e46c6da189ca2c0427d8c4295e4"></script>
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">软件工程学习记录</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Felix/蔡济阳 个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UI"><span class="nav-number">1.</span> <span class="nav-text">UI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%83%8F%E7%B4%A0%E5%8D%95%E4%BD%8D"><span class="nav-number">1.1.</span> <span class="nav-text">像素单位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%89%B2%E5%BD%A9"><span class="nav-number">1.2.</span> <span class="nav-text">色彩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%83%E9%87%8D"><span class="nav-number">1.3.</span> <span class="nav-text">权重</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%86%E8%8A%82%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">细节问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6"><span class="nav-number">1.5.</span> <span class="nav-text">常用组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Text"><span class="nav-number">1.5.1.</span> <span class="nav-text">Text</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%8D%A2%E8%A1%8C"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">自动换行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9C%81%E7%95%A5"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">省略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E9%92%9F%E7%BB%84%E4%BB%B6-Clock"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">时钟组件-Clock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E6%97%B6%E5%99%A8%E7%BB%84%E4%BB%B6-TickTimer"><span class="nav-number">1.5.1.4.</span> <span class="nav-text">计时器组件-TickTimer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TextField"><span class="nav-number">1.5.1.5.</span> <span class="nav-text">TextField</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Button"><span class="nav-number">1.5.2.</span> <span class="nav-text">Button</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">响应点击事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E5%87%BB%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">双击事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%95%BF%E6%8C%89%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">长按事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BB%91%E5%8A%A8-x2F-%E8%A7%A6%E6%91%B8-%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.5.2.4.</span> <span class="nav-text">滑动 &#x2F; 触摸 事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Checkbox"><span class="nav-number">1.5.2.5.</span> <span class="nav-text">Checkbox</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Image"><span class="nav-number">1.5.3.</span> <span class="nav-text">Image</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A3%81%E5%88%87%E7%BC%A9%E6%94%BE"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">裁切缩放</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dialog"><span class="nav-number">1.5.4.</span> <span class="nav-text">Dialog</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CommonDialog"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">CommonDialog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%B9%E7%AA%97"><span class="nav-number">1.5.4.2.</span> <span class="nav-text">自定义弹窗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%BD%E5%8F%96%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">1.5.4.3.</span> <span class="nav-text">抽取工具类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ToastDialog"><span class="nav-number">1.5.4.4.</span> <span class="nav-text">ToastDialog</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="nav-number">1.5.5.</span> <span class="nav-text">进度条</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ProgressBar"><span class="nav-number">1.5.5.1.</span> <span class="nav-text">ProgressBar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RoundProgressBar"><span class="nav-number">1.5.5.2.</span> <span class="nav-text">RoundProgressBar</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ListContainer"><span class="nav-number">1.5.6.</span> <span class="nav-text">ListContainer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BE%8E%E5%8C%96%E7%BB%84%E4%BB%B6"><span class="nav-number">1.6.</span> <span class="nav-text">美化组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A2%E7%8A%B6%E7%BE%8E%E5%8C%96"><span class="nav-number">1.6.1.</span> <span class="nav-text">形状美化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%BE%8E%E5%8C%96"><span class="nav-number">1.6.2.</span> <span class="nav-text">状态美化</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Felix/蔡济阳"
+      src="/myimages/Pixels_trophy.png">
+  <p class="site-author-name" itemprop="name">Felix/蔡济阳</p>
+  <div class="site-description" itemprop="description">记录学习的点滴</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Caijiyang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Caijiyang" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:caijiyan6@163.com" title="E-Mail → mailto:caijiyan6@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN,en" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/Caijiyang" title="https:&#x2F;&#x2F;github.com&#x2F;Caijiyang" rel="noopener" target="_blank">GitHub</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://gitee.com/caijiyang" title="https:&#x2F;&#x2F;gitee.com&#x2F;caijiyang" rel="noopener" target="_blank">Gitee</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.csdn.net/qq_43266597?spm=1000.2115.3001.5343" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43266597?spm&#x3D;1000.2115.3001.5343" rel="noopener" target="_blank">CSDN</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://felixcjy.cn/2022/01/25/5%20%E7%A7%BB%E5%8A%A8%E7%AB%AF/5.2%20HarmonyOS/5.2.1%20HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/UI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myimages/Pixels_trophy.png">
+      <meta itemprop="name" content="Felix/蔡济阳">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="软件工程学习记录">
+      <meta itemprop="description" content="记录学习的点滴">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Harmony应用开发基础-UI | 软件工程学习记录">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Harmony应用开发基础-UI
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-25 17:22:20" itemprop="dateCreated datePublished" datetime="2022-01-25T17:22:20+08:00">2022-01-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-12 11:32:58" itemprop="dateModified" datetime="2023-07-12T11:32:58+08:00">2023-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/5-%E7%A7%BB%E5%8A%A8%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">5 移动端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/5-%E7%A7%BB%E5%8A%A8%E7%AB%AF/5-2-HarmonyOS/" itemprop="url" rel="index"><span itemprop="name">5.2 HarmonyOS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/5-%E7%A7%BB%E5%8A%A8%E7%AB%AF/5-2-HarmonyOS/5-2-1-HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">5.2.1 HarmonyOS应用开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>UI 界面方面的细节问题。</p>
+<span id="more"></span>
+
+<h1 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h1><ul>
+<li><code>padding</code> 是 内边距，<code>margin</code> 是 外边距</li>
+</ul>
+<h2 id="像素单位"><a href="#像素单位" class="headerlink" title="像素单位"></a>像素单位</h2><p>vp：是针对应用而言的虚拟尺寸（区别于屏幕硬件本身的像素单位）。</p>
+<p><code>vp = ( px * 160) / PPI</code> ，PPI（Pixels per Inch），每英寸有多少个像素点。</p>
+<table>
+<thead>
+<tr>
+<th align="center">代表的分辨率</th>
+<th align="center">屏幕分辨率</th>
+<th align="center">换算（px&#x2F;vp）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">240 * 320</td>
+<td align="center">120</td>
+<td align="center">1 vp &#x3D; 0.75 vp</td>
+</tr>
+<tr>
+<td align="center">320</td>
+<td align="center"><font color="red">160</font></td>
+<td align="center"><font color="red">1 vp &#x3D; 1 vp</font></td>
+</tr>
+<tr>
+<td align="center">480 * 800</td>
+<td align="center">240</td>
+<td align="center">1 vp &#x3D; 1.5 vp</td>
+</tr>
+<tr>
+<td align="center">720 * 1280</td>
+<td align="center">320</td>
+<td align="center">1 vp &#x3D; 2 vp</td>
+</tr>
+<tr>
+<td align="center">1920 * 1080</td>
+<td align="center">480</td>
+<td align="center">1 vp &#x3D; 3 vp</td>
+</tr>
+</tbody></table>
+<p>fp：是大小单位，字体大小。</p>
+<h2 id="色彩"><a href="#色彩" class="headerlink" title="色彩"></a>色彩</h2><p>美学中的三原色：红黄蓝，但是在计算机中，采用光学三原色是：<strong>红、绿、蓝</strong> ，用 <code>0 ~ 255</code> 来表示这三个颜色深浅。</p>
+<ul>
+<li>色彩取值：例如：**#BF2568**，再这值中，BF，是红色，25，是绿色，68，是蓝色。为16进制数字。</li>
+<li>透明度：在色彩取值中，可以加上透明度：**#<font color="red">00</font>BF2568** ，00，代表全透明，范围是 <code>00 ~ FF</code>。</li>
+<li>省略问题：三组全相同则可以省略。如：**#778899**，可省略为 <strong>#789</strong>，而 <strong>#778896</strong>，不可省略。</li>
+</ul>
+<h2 id="权重"><a href="#权重" class="headerlink" title="权重"></a>权重</h2><p>权重越大，占比越大。</p>
+<h2 id="细节问题"><a href="#细节问题" class="headerlink" title="细节问题"></a>细节问题</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Text</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:layout_alignment</span>=<span class="string">&quot;right&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:right_margin</span>=<span class="string">&quot;20vp&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 在这里面 布局默认是从左向右排布的，</span></span><br><span class="line"><span class="comment">	 需要先设置 layout_alignment 为 right </span></span><br><span class="line"><span class="comment">	 之后，right_margin 才会生效。--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用组件"><a href="#常用组件" class="headerlink" title="常用组件"></a>常用组件</h2><h3 id="Text"><a href="#Text" class="headerlink" title="Text"></a>Text</h3><p>长和宽的默认单位是：<strong>像素（px）</strong> ，但是可以自己指定单位（vp&#x2F;px）。</p>
+<h4 id="自动换行"><a href="#自动换行" class="headerlink" title="自动换行"></a>自动换行</h4><p>开启自动换行</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ohos:multiple_line=&quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+<p>设置最大行数</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ohos:max_text_lines=&quot;1&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="省略"><a href="#省略" class="headerlink" title="省略"></a>省略</h4><p>可选值有以下几种</p>
+<ul>
+<li>auto_scrolling：滚动输出。</li>
+</ul>
+<p>使用上述选值，需要配置以下属性,表示滚动的次数，值为：limited、数字。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ohos:auto_scrolling_count=&quot;unlimited&quot;</span><br></pre></td></tr></table></figure>
+
+<p>滚动速度：单位毫秒</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ohos:autoscrolling_duration=&quot;2000&quot;</span><br></pre></td></tr></table></figure>
+
+<p>最后，还需要在Java代码中开启滚动效果(MainAbilityScilice)，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(Component component)</span> &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    text.startAutoScrolling();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>none：同理</li>
+<li>ellipsis_at_middle：同理</li>
+<li>ellipsis_at_start：前面的内容省略</li>
+<li>ellipsis_at_end：同理</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ohos:truncation_mode=&quot;ellipsis_at_start&quot;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="时钟组件-Clock"><a href="#时钟组件-Clock" class="headerlink" title="时钟组件-Clock"></a>时钟组件-Clock</h4><p>Clock 组件是 Text 组件的子类。</p>
+<p>常用属性：</p>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th align="left">功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>time</td>
+<td align="left">设置开始时间（值为毫秒值） 如果写0，表示从1970年1月1日 0:0:0开始计时 该属性不写。默认是从当前时间开始计时</td>
+</tr>
+<tr>
+<td>time_zoom</td>
+<td align="left">时区 包括： <strong>GMT（格林威治标准时间）</strong> <br /> UTC（世界标准时间） <br /> CST（美国、澳大利亚、古巴或中国的标准时间）<br /> DST（夏令时）、 PDT（太平洋夏季时间） <br /> mode_24_hour 按照24小时显示的格式。值为指定的格式。<br /> mode_24_hour 按照24小时显示的格式。值为指定的格式。</td>
+</tr>
+<tr>
+<td>mode_24_hour</td>
+<td align="left">按照24小时显示的格式。值为指定的格式。如：<code>yyyy年MM月dd日 HH:mm:ss</code></td>
+</tr>
+<tr>
+<td>显示12小时制的：</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ohos:mode_24_hour=&quot;false&quot;</span><br><span class="line">ohos:mode_12_hour=&quot;yyyy年MM月dd日 HH:mm:ss&quot;</span><br></pre></td></tr></table></figure>
+
+<p><em>注：在这里面的 y,M,d等形式，需要查阅 JavaAPI</em></p>
+<p>常见方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>setTime（long time）</td>
+<td>传入时间的毫秒值</td>
+</tr>
+<tr>
+<td>setTime（long time）</td>
+<td>传入时区</td>
+</tr>
+<tr>
+<td>set24HourModeEnabled（boolean format24Hour）</td>
+<td>参数：false：不按24小时 true：按24小时 默认：true</td>
+</tr>
+</tbody></table>
+<p>基本用法：</p>
+<ul>
+<li>xml 文件布局：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Clock</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:height</span>=<span class="string">&quot;match_content&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:width</span>=<span class="string">&quot;match_content&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:text_size</span>=<span class="string">&quot;30fp&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>java</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将字符串表示的时间（2021-01-01 11:11:11）转成毫秒值</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">dateToTimeStamp</span><span class="params">(String s)</span> <span class="keyword">throws</span> ParseException&#123;</span><br><span class="line">    <span class="type">SimpleDateFormat</span> <span class="variable">simpleDateFormat</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>); </span><br><span class="line">    <span class="type">Date</span> <span class="variable">date</span> <span class="operator">=</span> simpleDateFormat.parse(s); </span><br><span class="line">    <span class="type">long</span> <span class="variable">ts</span> <span class="operator">=</span> date.getTime(); </span><br><span class="line">    <span class="type">String</span> <span class="variable">res</span> <span class="operator">=</span> String.valueOf(ts); </span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//将时间的毫秒值转换为时间</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">timeStampToDate</span><span class="params">(String s)</span>&#123;</span><br><span class="line">    <span class="type">SimpleDateFormat</span> <span class="variable">simpleDateFormat</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>); </span><br><span class="line">    <span class="type">long</span> <span class="variable">lt</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Long</span>(s); </span><br><span class="line">    <span class="type">Date</span> <span class="variable">date</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Date</span>(lt); </span><br><span class="line">    <span class="type">String</span> <span class="variable">res</span> <span class="operator">=</span> simpleDateFormat.format(date);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="计时器组件-TickTimer"><a href="#计时器组件-TickTimer" class="headerlink" title="计时器组件-TickTimer"></a>计时器组件-TickTimer</h4><p>是Text的子类，所以可以使用Text的一些属性。</p>
+<p>常见属性</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>format</td>
+<td>设置显示的格式</td>
+</tr>
+<tr>
+<td>count_down</td>
+<td>true倒着计时 false正着计时</td>
+</tr>
+</tbody></table>
+<p>常见方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>start()</td>
+<td>启动计时器</td>
+</tr>
+<tr>
+<td>stop()</td>
+<td>暂停计时器</td>
+</tr>
+<tr>
+<td>setBaseTime(long base)</td>
+<td>设置基准时间，有bug</td>
+</tr>
+<tr>
+<td>setCountDown(boolean countDown)</td>
+<td>true：倒着计时，false：顺着计时</td>
+</tr>
+<tr>
+<td>setFormat(String format)</td>
+<td>设置显示格式。默认格式为：分钟::秒钟</td>
+</tr>
+<tr>
+<td>setTickListener</td>
+<td>计时监听</td>
+</tr>
+</tbody></table>
+<p>基本用法：</p>
+<ul>
+<li>xml 文件：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TickTimer</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:id</span>=<span class="string">&quot;$+id:my_tt&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:height</span>=<span class="string">&quot;60vp&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:width</span>=<span class="string">&quot;250vp&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:padding</span>=<span class="string">&quot;10vp&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:text_size</span>=<span class="string">&quot;20fp&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:text_color</span>=<span class="string">&quot;#ffffff&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:background_element</span>=<span class="string">&quot;#0000ff&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:text_alignment</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:layout_alignment</span>=<span class="string">&quot;horizontal_center&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:top_margin</span>=<span class="string">&quot;50vp&quot;</span> /&gt;</span></span><br><span class="line">//没有设置时间，默认是从1970年1月1日开始。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Java 代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">TickTimer</span> <span class="variable">tickTimer</span> <span class="operator">=</span> (TickTimer)findComponentById(ResourceTable.Id_my_tt);</span><br><span class="line"><span class="comment">//可能有bug，里边的事件，时间戳，绝对时间值，测试都不对</span></span><br><span class="line"><span class="comment">//没有设置时间，默认是从1970年1月1日开始。</span></span><br><span class="line"><span class="comment">//设置为0，是从当前时间开始。正数减时间，负数加时间，实际写代码测试一下，是否修改了这个bug</span></span><br><span class="line"><span class="comment">//tickTimer.setBaseTime(时间的毫秒值);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//设置是正着计时还是倒着计时。</span></span><br><span class="line"><span class="comment">//tickTimer.setCountDown(false); </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//设置格式</span></span><br><span class="line">tickTimer.setFormat(<span class="string">&quot;mm:ss&quot;</span>);</span><br><span class="line"><span class="comment">//对时间进行监听</span></span><br><span class="line">tickTimer.setTickListener(监听回调);</span><br><span class="line"><span class="comment">//开始计时</span></span><br><span class="line">tickTimer.start();</span><br><span class="line"><span class="comment">//可能有bug，执行后，后台没停止</span></span><br><span class="line">tickTimer.stop();</span><br><span class="line"><span class="comment">//纯Java实现</span></span><br><span class="line"><span class="comment">//每隔1秒就执行run里面的代码</span></span><br><span class="line"><span class="comment">//只不过没有页面显示而已。</span></span><br><span class="line"><span class="type">Timer</span> <span class="variable">timer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Timer</span>();</span><br><span class="line">timer.schedule(<span class="keyword">new</span> <span class="title class_">TimerTask</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">    	<span class="comment">//...在这里写定时任务</span></span><br><span class="line">    &#125;); </span><br><span class="line">&#125;&#125;,<span class="number">0</span>,<span class="number">1000</span>);</span><br><span class="line">timer.cancel(); <span class="comment">//停止计时</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="TextField"><a href="#TextField" class="headerlink" title="TextField"></a>TextField</h4><p>是Text的子类，用来进行用户输入数据的。</p>
+<p>常见属性</p>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hint</td>
+<td>提示文字</td>
+</tr>
+<tr>
+<td>basement</td>
+<td>输入框基线的颜色</td>
+</tr>
+<tr>
+<td>element_cursor_bubble</td>
+<td>设置提示气泡</td>
+</tr>
+<tr>
+<td>selection_color</td>
+<td>选中文字的颜色</td>
+</tr>
+<tr>
+<td>element_selection_left_bubble</td>
+<td>设置选中之后左边的气泡</td>
+</tr>
+<tr>
+<td>element_selection_right_bubble</td>
+<td>设置选中之后右边的气泡</td>
+</tr>
+<tr>
+<td>text_input_type</td>
+<td>输入框中的输入类型（pattern_password密文展示）</td>
+</tr>
+</tbody></table>
+<p>案例：</p>
+<p>按下按钮查看密码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainAbilitySlice</span> <span class="keyword">extends</span> <span class="title class_">AbilitySlice</span> <span class="keyword">implements</span> <span class="title class_">Component</span>.TouchEventListener &#123;</span><br><span class="line">    TextField tf;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">(Intent intent)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onStart(intent);</span><br><span class="line">        <span class="built_in">super</span>.setUIContent(ResourceTable.Layout_ability_main);</span><br><span class="line">        tf = (TextField) findComponentById(ResourceTable.Id_text);</span><br><span class="line">        <span class="type">Button</span> <span class="variable">but</span> <span class="operator">=</span> (Button) findComponentById(ResourceTable.Id_but);</span><br><span class="line">        but.setTouchEventListener(<span class="built_in">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="comment">//参数一：现在触摸的按钮。</span></span><br><span class="line">    <span class="comment">//参数二：动作对象。</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onTouchEvent</span><span class="params">(Component component, TouchEvent touchEvent)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">action</span> <span class="operator">=</span> touchEvent.getAction();</span><br><span class="line">        <span class="keyword">if</span>(action == TouchEvent.PRIMARY_POINT_DOWN)&#123;</span><br><span class="line">            <span class="comment">//当按下不松的时候，将文本框中的密码变成明文。</span></span><br><span class="line">            tf.setTextInputType(InputAttribute.PATTERN_NULL);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(action == TouchEvent.PRIMARY_POINT_UP)&#123;</span><br><span class="line">            <span class="comment">//当松开的时候，将文本框中的密码变回密文。</span></span><br><span class="line">            tf.setTextInputType(InputAttribute.PATTERN_PASSWORD);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//true:表示触摸事件的后续动作还会进行触发</span></span><br><span class="line">        <span class="comment">//false：表示触摸事件只触发第一个按下不松的动作。</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h3><h4 id="响应点击事件"><a href="#响应点击事件" class="headerlink" title="响应点击事件"></a>响应点击事件</h4><p>方法一：自己编写类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> MainAbilitySlice <span class="keyword">extends</span> <span class="title class_">AbilitySlice</span> &#123;</span><br><span class="line">    </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">(Intent intent)</span> &#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">       button.setClickedListener(<span class="keyword">new</span> <span class="title class_">MyListener</span>());</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyListener</span> <span class="keyword">implements</span> <span class="title class_">Component</span>.ClickedListener&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    piblic <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(Component component)</span> &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法二：实现接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainAbilitySlice</span> <span class="keyword">extends</span> <span class="title class_">AbilitySlice</span> implement Component.ClickedListener&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Overrride</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">(Intent, intent)</span> &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        button.setClickedListener(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    piblic <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(Component component)</span> &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法三：匿名内部类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainAbilitySlice</span> <span class="keyword">extends</span> <span class="title class_">AbilitySlice</span> &#123;</span><br><span class="line">    <span class="meta">@Overrride</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">(Intent, intent)</span> &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        button.setClickedListener(<span class="keyword">new</span> <span class="title class_">Component</span>.ClickListener()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            piblic <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(Component component)</span> &#123;</span><br><span class="line">                <span class="comment">//...</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActive</span><span class="params">()</span> &#123;</span><br><span class="line">    	<span class="built_in">super</span>.onActive();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onForeground</span><span class="params">(Intent intent)</span> &#123;</span><br><span class="line">    	<span class="built_in">super</span>.onForeground(intent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法四：方法引用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainAbilitySlice</span> <span class="keyword">extends</span> <span class="title class_">AbilitySlice</span> &#123;</span><br><span class="line">    <span class="meta">@Overrride</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">(Intent, intent)</span> &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        button.setClickedListener(<span class="built_in">this</span>::onClick);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(Component component)</span> &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>禁用点击事件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">button.setClickable(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>设置位置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">button.setTranslation();</span><br></pre></td></tr></table></figure>
+
+<h4 id="双击事件"><a href="#双击事件" class="headerlink" title="双击事件"></a>双击事件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainAbilitySlice</span> <span class="keyword">extends</span> <span class="title class_">AbilitySlice</span> <span class="keyword">implements</span> <span class="title class_">Component</span>.DoubleClickedListener &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">(Intent intent)</span> &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        button.setDoubleClickedListener(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onDoubleClicked</span><span class="params">(Component component)</span> &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="长按事件"><a href="#长按事件" class="headerlink" title="长按事件"></a>长按事件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainAbilitySlice</span> <span class="keyword">extends</span> <span class="title class_">AbilitySlice</span> <span class="keyword">implements</span> <span class="title class_">Component</span>.LongClickedListener &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">(Intent intent)</span> &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        button.setLongClickedListener(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onLongClicked</span><span class="params">(Component component)</span> &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="滑动-x2F-触摸-事件"><a href="#滑动-x2F-触摸-事件" class="headerlink" title="滑动 &#x2F; 触摸 事件"></a>滑动 &#x2F; 触摸 事件</h4><p>分为三个事件</p>
+<ul>
+<li>PRIMARY_POINT_DOWN：按下不松开</li>
+<li>POINT_MOVE：滑动</li>
+<li>PRIMARY_POINT_UP：抬起</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainAbilitySlice</span> <span class="keyword">extends</span> <span class="title class_">AbilitySlice</span> <span class="keyword">implements</span> <span class="title class_">Component</span>.TouchEvenListener &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">(Intent intent)</span> &#123;</span><br><span class="line">        directionLayout.setTouchEvenListener(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//记录按下时手指的位置</span></span><br><span class="line">	<span class="type">float</span> <span class="variable">startX</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">	<span class="type">float</span> <span class="variable">startY</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@touchEvent</span> 表示动作是 按下，滑动，抬起。</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>     返回值：true表示继续执行后面的动作，false表示不会继续执行后面的动作。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onTouchEvent</span><span class="params">(Component component, TouchEvent touchEvent)</span> &#123;</span><br><span class="line">        count++;</span><br><span class="line">        <span class="comment">// 1: 按下，2: 松开，3: 滑动</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">action</span> <span class="operator">=</span> touchEvent.getAction();</span><br><span class="line">        <span class="keyword">if</span>(action == touchEvent.PRIMARY_POINT_DOWN) &#123;</span><br><span class="line">            <span class="type">MmiPoint</span> <span class="variable">point</span> <span class="operator">=</span> touchEvent.getPointerPosition(<span class="number">0</span>);</span><br><span class="line">            startX = point.getX();</span><br><span class="line">            startY = point.getY();</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(action == touchEvent.POINT_MOVE) &#123;</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(action == touchEvent.PRIMARY_POINT_UP) &#123;</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Checkbox"><a href="#Checkbox" class="headerlink" title="Checkbox"></a>Checkbox</h4><p>父类是AbsButton，而AbsButton的父类是Button。</p>
+<p>常见属性</p>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>marked</td>
+<td>多选框的选中状态。true为选中，false为没有选中。</td>
+</tr>
+<tr>
+<td>check_element</td>
+<td>自定义选择框的样式。样式需要跟marked的值对应。</td>
+</tr>
+</tbody></table>
+<p>常见方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>setChecked</td>
+<td>设置多选框的选中状态。true为选中，false为没有选中。</td>
+</tr>
+<tr>
+<td>isChecked</td>
+<td>判断多选框的选中状态。true为选中，false为没有选中。</td>
+</tr>
+<tr>
+<td>setCheckedStateChangedListener</td>
+<td>添加一个状态监听事件</td>
+</tr>
+</tbody></table>
+<p>基本用法</p>
+<ul>
+<li>xml 文件</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Java 文件</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Image"><a href="#Image" class="headerlink" title="Image"></a>Image</h3><p>背景：background_element</p>
+<p>内容（前景）：image_src</p>
+<p>基本用法</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Image</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:height</span>=<span class="string">&quot;100vp&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:width</span>=<span class="string">&quot;100vp&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:image_src</span>=<span class="string">&quot;$media:all&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:background_element</span>=<span class="string">&quot;#00ff00&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="裁切缩放"><a href="#裁切缩放" class="headerlink" title="裁切缩放"></a>裁切缩放</h4><p>相关方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>setClipGravity</td>
+<td>设置剪切对齐模式</td>
+</tr>
+<tr>
+<td>setScaleMode</td>
+<td>当图像和组件的大小不同时，此方法可以缩放或者剪切图像</td>
+</tr>
+</tbody></table>
+<p>图片剪切显示：</p>
+<ul>
+<li><p>代码中：可以用setClipGravity方法</p>
+</li>
+<li><p>xml文件中：可以用clip_alignment属性 </p>
+<ul>
+<li>上、下、左、右、居中</li>
+<li>表示分别按照上、下、左、右、中间部位进行剪切。</li>
+</ul>
+</li>
+</ul>
+<p>图片缩放显示：</p>
+<ul>
+<li>代码中：可以用setScaleMode方法 </li>
+<li>xml文件中：可以用scale_mode属性<ul>
+<li>inside：表示将原图按比例缩放到与Image相同或更小的尺寸，并居中显示。 有可能不会填充组件</li>
+<li>center：表示不缩放，按Image大小显示原图中间部分。 </li>
+<li>stretch：表示将原图缩放到与Image大小一致。 拉伸。将组件填充。</li>
+<li>clip_center：表示将原图按比例缩放到与Image相同或更大的尺寸，并居中显示。超过组件的部分被剪 切掉。 </li>
+<li>zoom_center：表示原图按照比例缩放到与Image最窄边一致，并居中显示。</li>
+<li>zoom_end：表示原图按照比例缩放到与Image最窄边一致，并靠结束端显示。</li>
+<li>zoom_start：表示原图按照比例缩放到与Image最窄边一致，并靠起始端显示。</li>
+</ul>
+</li>
+</ul>
+<p> 注意：一般来讲在设置的时候会跟图片保持一致，否则图片会失真。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Image</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:background_element</span>=<span class="string">&quot;#00ff00&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">缩放</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:scale_mode</span>=<span class="string">&quot;zoom_center&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">剪切</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:clip_alignment</span>=<span class="string">&quot;top&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>左上角：<code>left|top</code> 单词之间得写在一起。</p>
+<h3 id="Dialog"><a href="#Dialog" class="headerlink" title="Dialog"></a>Dialog</h3><h4 id="CommonDialog"><a href="#CommonDialog" class="headerlink" title="CommonDialog"></a>CommonDialog</h4><p>普通弹窗</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="type">CommonDialog</span> <span class="variable">cd</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CommonDialog</span>(<span class="built_in">this</span>);</span><br><span class="line">    <span class="comment">//2.因为弹框里面是有默认布局的</span></span><br><span class="line">    cd.setTitleText(<span class="string">&quot;系统定位服务已关闭&quot;</span>);</span><br><span class="line">    cd.setContentText(<span class="string">&quot;请打开定位服务，以便司机师傅能够准确接您上车&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 自动关闭，如果加上，则会造成点击弹窗以外的区域一样可以关闭这个弹窗。</span></span><br><span class="line">    cd.setAutoClosable(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置按钮</span></span><br><span class="line">    <span class="comment">//参数一：按钮的索引 0 1 2</span></span><br><span class="line">    <span class="comment">//参数二：按钮上的文字</span></span><br><span class="line">    <span class="comment">//参数三：点击了按钮之后能做什么</span></span><br><span class="line">    cd.setButton(<span class="number">0</span>, <span class="string">&quot;设置&quot;</span>, <span class="keyword">new</span> <span class="title class_">IDialog</span>.ClickedListener() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(IDialog iDialog, <span class="type">int</span> i)</span> &#123;</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">            <span class="comment">//如果点击之后我不需要做任何事情，在第三个参数中传递null就可以了。</span></span><br><span class="line">           &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">	</span><br><span class="line">	cd.setButton(<span class="number">1</span>, <span class="string">&quot;取消&quot;</span>, <span class="keyword">new</span> <span class="title class_">IDialog</span>.ClickedListener() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(IDialog iDialog, <span class="type">int</span> i)</span> &#123;</span><br><span class="line">            <span class="comment">//销毁弹框</span></span><br><span class="line">            cd.destroy();</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//把弹框显示出来</span></span><br><span class="line">	cd.show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="自定义弹窗"><a href="#自定义弹窗" class="headerlink" title="自定义弹窗"></a>自定义弹窗</h4><ol>
+<li>创建弹窗布局，xml布局文件</li>
+<li>在Java类中配置</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">CommonDialog commonDialog= <span class="keyword">new</span> <span class="title class_">CommonDialog</span>(<span class="built_in">this</span>);</span><br><span class="line"><span class="comment">//大小是默认包裹内容的。</span></span><br><span class="line"><span class="comment">//弹框默认是居中放置、透明的、直角，可以把直角设置为圆角</span></span><br><span class="line">cd.setCornerRadius(<span class="number">15</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//xml文件加载到内存当中。交给弹框并展示出来。</span></span><br><span class="line"><span class="comment">//加载xml文件并获得一个布局对象</span></span><br><span class="line"><span class="comment">//parse方法：加载一个xml文件，返回一个布局对象。</span></span><br><span class="line"><span class="comment">//参数一：要加载的xml文件</span></span><br><span class="line"><span class="comment">//参数二：该xml文件是否跟其他xml文件有关。如果无关是独立的，就写null就可以了</span></span><br><span class="line"><span class="comment">//参数三：如果文件是独立的，那么直接写false</span></span><br><span class="line"><span class="type">DirectionalLayout</span> <span class="variable">directionalLayout</span> <span class="operator">=</span> </span><br><span class="line">    (DirectionalLayout) LayoutScatter.getInstance(<span class="built_in">this</span>).parse(ResourceTable.Layout_messagedialog, <span class="literal">null</span>, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">buttom_submit.setClickedListener(<span class="keyword">new</span> <span class="title class_">Component</span>.ClickedListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(Component component)</span> &#123;</span><br><span class="line">    	title.setText(<span class="string">&quot;点击了确定按钮&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//取消按钮也要添加点击事件</span></span><br><span class="line">cancel.setClickedListener(<span class="keyword">new</span> <span class="title class_">Component</span>.ClickedListener() &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(Component component)</span> &#123;</span><br><span class="line">    	cd.destroy();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//此时布局对象跟弹框还没有任何关系，还需要把布局对象交给弹框才可以</span></span><br><span class="line">cd.setContentCustomComponent(directionalLayout);</span><br><span class="line"><span class="comment">//让弹框展示出来</span></span><br><span class="line">cd.show();</span><br></pre></td></tr></table></figure>
+
+<p>如果需要更复杂的弹框，只要丰富xml文件中的组件即可。</p>
+<h4 id="抽取工具类"><a href="#抽取工具类" class="headerlink" title="抽取工具类"></a>抽取工具类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyDialog</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">showDialog</span><span class="params">(Context context,String msg)</span>&#123;</span><br><span class="line">        <span class="type">CommonDialog</span> <span class="variable">cd</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CommonDialog</span>(context);</span><br><span class="line">        cd.setCornerRadius(<span class="number">15</span>);</span><br><span class="line">        <span class="type">DirectionalLayout</span> <span class="variable">dl</span> <span class="operator">=</span> (DirectionalLayout) LayoutScatter.getInstance(context).parse(ResourceTable.Layout_messagedialog, <span class="literal">null</span>, <span class="literal">false</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="type">Text</span> <span class="variable">title</span> <span class="operator">=</span> (Text) dl.findComponentById(ResourceTable.Id_message);</span><br><span class="line">        <span class="type">Button</span> <span class="variable">submit</span> <span class="operator">=</span> (Button) dl.findComponentById(ResourceTable.Id_submit);</span><br><span class="line">        <span class="type">Button</span> <span class="variable">cancel</span> <span class="operator">=</span> (Button) dl.findComponentById(ResourceTable.Id_cancel);</span><br><span class="line">        </span><br><span class="line">        title.setText(msg);</span><br><span class="line"></span><br><span class="line">        submit.setClickedListener(<span class="keyword">new</span> <span class="title class_">Component</span>.ClickedListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(Component component)</span> &#123;</span><br><span class="line">                title.setText(<span class="string">&quot;点击了确定按钮&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        cancel.setClickedListener(<span class="keyword">new</span> <span class="title class_">Component</span>.ClickedListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(Component component)</span> &#123;</span><br><span class="line">                cd.destroy();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        cd.setContentCustomComponent(dl);</span><br><span class="line">        cd.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="ToastDialog"><a href="#ToastDialog" class="headerlink" title="ToastDialog"></a>ToastDialog</h4><p>吐司弹框。是 <code>CommonDialog</code> 的子类，用法基本相似，但是有自己特性。</p>
+<p>也拥有标题，内容和按钮，但是我们只使用按钮。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ToastDialog</span> <span class="variable">t</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ToastDialog</span>(<span class="built_in">this</span>);</span><br><span class="line">t.setText(<span class="string">&quot;要显示的内容&quot;</span>)</span><br><span class="line">t.setAlignment(LayoutAlignment.CENTER);</span><br><span class="line">t.show();</span><br></pre></td></tr></table></figure>
+
+<p>相关设置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ToastDialog</span> <span class="variable">toastDialog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ToastDialog</span>(<span class="built_in">this</span>);</span><br><span class="line"><span class="comment">//设置的大小，如果不写，默认包裹内容</span></span><br><span class="line">toastDialog.setSize(DirectionalLayout.LayoutConfig.MATCH_CONTENT,</span><br><span class="line">                    DirectionalLayout.LayoutConfig.MATCH_CONTENT);</span><br><span class="line"><span class="comment">//设置持续时间，如果不写，默认2秒</span></span><br><span class="line">toastDialog.setDuration(<span class="number">2000</span>);</span><br><span class="line"><span class="comment">//设置自动关闭，如果不写，就是自动关闭</span></span><br><span class="line">toastDialog.setAutoClosable(<span class="literal">true</span>);</span><br><span class="line"><span class="comment">//设置位置，如果不写，默认居中</span></span><br><span class="line">toastDialog.setAlignment(LayoutAlignment.CENTER);</span><br><span class="line"><span class="comment">//设置提示信息内容</span></span><br><span class="line">toastDialog.setText(<span class="string">&quot;要显示的内容&quot;</span>);</span><br><span class="line"><span class="comment">//让吐司展示出来</span></span><br><span class="line">toastDialog.show();</span><br></pre></td></tr></table></figure>
+
+<p>自定义布局和抽取工具类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyToastUtils</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">showDialog</span><span class="params">(Context context,String msg)</span>&#123;</span><br><span class="line">    <span class="comment">//1.加载xml布局文件</span></span><br><span class="line">    <span class="type">DirectionalLayout</span> <span class="variable">dl</span> <span class="operator">=</span> (DirectionalLayout)</span><br><span class="line">    LayoutScatter.getInstance(context).parse(ResourceTable.Layout_mytoast, <span class="literal">null</span>, <span class="literal">false</span>);</span><br><span class="line">    <span class="comment">//创建吐司弹框的对象</span></span><br><span class="line">    <span class="type">ToastDialog</span> <span class="variable">td</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ToastDialog</span>(context);</span><br><span class="line">    <span class="comment">//设置吐司的大小，宽和高。</span></span><br><span class="line">	td.setSize(DirectionalLayout.LayoutConfig.MATCH_CONTENT,</span><br><span class="line">               DirectionalLayout.LayoutConfig.MATCH_CONTENT);</span><br><span class="line">    <span class="comment">//设置出现的时间</span></span><br><span class="line">    td.setDuration(<span class="number">2000</span>);</span><br><span class="line">    <span class="comment">//设置自动关闭</span></span><br><span class="line">    td.setAutoClosable(<span class="literal">true</span>);</span><br><span class="line">    <span class="comment">//设置对齐方式</span></span><br><span class="line">    td.setAlignment(LayoutAlignment.CENTER);</span><br><span class="line">    <span class="comment">//给吐司弹框设置要展示的文本内容</span></span><br><span class="line">    td.setText(msg);</span><br><span class="line">    <span class="comment">//让吐司弹框出现</span></span><br><span class="line">    td.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>偏移</p>
+<p>接上面的代码，如果想换个位置，加上偏移即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">td.setOffset(<span class="number">0</span>,<span class="number">200</span>); <span class="comment">// x 轴偏移0，y 轴 向上偏移200</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="进度条"><a href="#进度条" class="headerlink" title="进度条"></a>进度条</h3><h4 id="ProgressBar"><a href="#ProgressBar" class="headerlink" title="ProgressBar"></a>ProgressBar</h4><p>常见属性</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性名称</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">orientation</td>
+<td>进度条的摆放<br />horizontal：水平<br />vertical：垂直</td>
+</tr>
+<tr>
+<td align="left">progress_color</td>
+<td>进度条颜色</td>
+</tr>
+<tr>
+<td align="left">progress_width</td>
+<td>进度条粗细</td>
+</tr>
+<tr>
+<td align="left">progress</td>
+<td>当前的进度值</td>
+</tr>
+<tr>
+<td align="left">max</td>
+<td>进度最大值</td>
+</tr>
+<tr>
+<td align="left">min</td>
+<td>进度最小值</td>
+</tr>
+<tr>
+<td align="left">progress_hint_text</td>
+<td>进度条文字</td>
+</tr>
+<tr>
+<td align="left">progress_hint_text_size</td>
+<td>进度条文字大小</td>
+</tr>
+<tr>
+<td align="left">progress_hint_text_color</td>
+<td>进度条文字颜色</td>
+</tr>
+<tr>
+<td align="left">progress_hint_text_alignment</td>
+<td>进度条文字对齐方式</td>
+</tr>
+</tbody></table>
+<p>常见方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>setOrientation(int orientation)</td>
+<td>方向</td>
+</tr>
+<tr>
+<td>setProgressWidth(int progressWidth)</td>
+<td>进度条的粗细</td>
+</tr>
+<tr>
+<td>setMaxValue</td>
+<td>最大进度值</td>
+</tr>
+<tr>
+<td>setMinValue</td>
+<td>最小进度值</td>
+</tr>
+<tr>
+<td>setProgressValue(int progress)</td>
+<td>当前的进度值</td>
+</tr>
+<tr>
+<td>setViceProgress(int progress)</td>
+<td>次一级进度值<br />（看电影时有个进度，电影的提前缓冲也有个进度）</td>
+</tr>
+</tbody></table>
+<p>基本用法</p>
+<ul>
+<li>xml 文件</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ProgressBar</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:height</span>=<span class="string">&quot;50vp&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:width</span>=<span class="string">&quot;300vp&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:progress_width</span>=<span class="string">&quot;8vp&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:progress_color</span>=<span class="string">&quot;#ff00ff&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:max</span>=<span class="string">&quot;100&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:min</span>=<span class="string">&quot;0&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:progress</span>=<span class="string">&quot;20&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:top_margin</span>=<span class="string">&quot;100vp&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Java 代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用点击模拟如接收文件的进度动态改变进度值</span></span><br><span class="line"><span class="type">ProgressBar</span> <span class="variable">progressBar</span> <span class="operator">=</span> (ProgressBar) findComponentById(ResourceTable.Id_my_pgb);</span><br><span class="line">    progressBar.setClickedListener(<span class="keyword">new</span> <span class="title class_">Component</span>.ClickedListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(Component component)</span> &#123;</span><br><span class="line">        <span class="type">ProgressBar</span> <span class="variable">pgb</span> <span class="operator">=</span> (ProgressBar) component; </span><br><span class="line">        pgb.setProgressValue(pgb.getProgress()+<span class="number">5</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="RoundProgressBar"><a href="#RoundProgressBar" class="headerlink" title="RoundProgressBar"></a>RoundProgressBar</h4><p>是ProgressBar的子类，用法跟ProgressBar一模一样，只是显示的方式不一样。圆形进度条。</p>
+<p>基本用法：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">RoundProgressBar</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:height</span>=<span class="string">&quot;300vp&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:width</span>=<span class="string">&quot;300vp&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:progress_hint_text</span>=<span class="string">&quot;80%&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:progress_hint_text_size</span>=<span class="string">&quot;50vp&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:progress_hint_text_color</span>=<span class="string">&quot;#000000&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:progress</span>=<span class="string">&quot;80&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:progress_width</span>=<span class="string">&quot;20vp&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:progress_color</span>=<span class="string">&quot;#FF0000&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:max</span>=<span class="string">&quot;100&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">ohos:min</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ListContainer"><a href="#ListContainer" class="headerlink" title="ListContainer"></a>ListContainer</h3><p>ListContainer是用来呈现<strong>连续、多行</strong>数据的组件，包含一系列<strong>相同类型</strong>的列表项。</p>
+<p>三个自有属性</p>
+<ol>
+<li><code>rebound_effect</code> 开启&#x2F;关闭回弹效果</li>
+<li><code>shader_color</code> 着色器颜色</li>
+<li><code>orientation</code> 列表项排列方向</li>
+</ol>
+<p>ListContainer 的使用方法</p>
+<ol>
+<li>在布局中创建 <code>ListContainer</code> </li>
+<li>再创建 <code>ListContainer</code> 的子布局</li>
+<li>创建数据包装类</li>
+<li>创建 <code>Provider</code> 类，继承自 <code>BaseItemProvider</code> ，重写方法<ol>
+<li><code>int getCount()</code> 方法，返回填充的表项个数。</li>
+<li><code>Object getItem(int position)</code> 方法， 返回某一项的id。</li>
+<li><code>Component getComponent(int position, Component covertComponent,ComponentContainer componentContainer)</code> 方法，根据 <code>position</code> 返回对应的界面组件。</li>
+</ol>
+</li>
+<li>在Java代码（MainAbilitySlice）中添加 ListContainer 的数据，并适配其数据结构。</li>
+<li>listContainer 在 sampleItemProvider 初始化后修改数据。</li>
+</ol>
+<p>示例，前三步略。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数据包装类</span></span><br><span class="line"><span class="keyword">package</span> com.felixcjy.mylistdemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SampleItem</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SampleItem</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 适配器类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SampleItemProvider</span> <span class="keyword">extends</span> <span class="title class_">BaseItemProvider</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;SampleItem&gt; list;</span><br><span class="line">    <span class="keyword">private</span> AbilitySlice slice;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SampleItemProvider</span><span class="params">(List&lt;SampleItem&gt; list, AbilitySlice slice)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.list = list;</span><br><span class="line">        <span class="built_in">this</span>.slice = slice;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getCount</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> list == <span class="literal">null</span> ? <span class="number">0</span> : list.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">getItem</span><span class="params">(<span class="type">int</span> position)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (list != <span class="literal">null</span> &amp;&amp; position &gt;= <span class="number">0</span> &amp;&amp; position &lt; list.size()) &#123;</span><br><span class="line">            <span class="keyword">return</span> list.get(position);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">long</span> <span class="title function_">getItemId</span><span class="params">(<span class="type">int</span> position)</span> &#123;</span><br><span class="line">        <span class="comment">//可添加具体处理逻辑</span></span><br><span class="line">        <span class="keyword">return</span> position;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Component <span class="title function_">getComponent</span><span class="params">(<span class="type">int</span> position, Component convertComponent, ComponentContainer componentContainer)</span> &#123;</span><br><span class="line">        <span class="keyword">final</span> Component cpt;</span><br><span class="line">        <span class="keyword">if</span> (convertComponent == <span class="literal">null</span>) &#123;</span><br><span class="line">            cpt = LayoutScatter.getInstance(slice).parse(ResourceTable.Layout_item_sample, <span class="literal">null</span>, <span class="literal">false</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            cpt = convertComponent;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">SampleItem</span> <span class="variable">sampleItem</span> <span class="operator">=</span> list.get(position);</span><br><span class="line">        <span class="type">Text</span> <span class="variable">text</span> <span class="operator">=</span> (Text) cpt.findComponentById(ResourceTable.Id_item_index);</span><br><span class="line">        text.setText(sampleItem.getName());</span><br><span class="line">        <span class="keyword">return</span> cpt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加 ListContainer 的数据</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainAbilitySlice</span> <span class="keyword">extends</span> <span class="title class_">AbilitySlice</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">(Intent intent)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onStart(intent);</span><br><span class="line">        <span class="built_in">super</span>.setUIContent(ResourceTable.Layout_ability_main);</span><br><span class="line">        initListContainer();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">initListContainer</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">ListContainer</span> <span class="variable">listContainer</span> <span class="operator">=</span> (ListContainer) findComponentById(ResourceTable.Id_list_container);</span><br><span class="line">        List&lt;SampleItem&gt; list = getData();</span><br><span class="line">        <span class="type">SampleItemProvider</span> <span class="variable">sampleItemProvider</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SampleItemProvider</span>(list, <span class="built_in">this</span>);</span><br><span class="line">        listContainer.setItemProvider(sampleItemProvider);</span><br><span class="line"></span><br><span class="line">        list.add(<span class="keyword">new</span> <span class="title class_">SampleItem</span>(<span class="string">&quot;Item&quot;</span> + sampleItemProvider.getCount()));</span><br><span class="line">        listContainer.setBindStateChangedListener(<span class="keyword">new</span> <span class="title class_">Component</span>.BindStateChangedListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onComponentBoundToWindow</span><span class="params">(Component component)</span> &#123;</span><br><span class="line">                <span class="comment">// ListContainer初始化时数据统一在provider中创建，不直接调用这个接口；</span></span><br><span class="line">                <span class="comment">// 建议在onComponentBoundToWindow监听或者其他事件监听中调用。</span></span><br><span class="line">                sampleItemProvider.notifyDataChanged();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onComponentUnboundFromWindow</span><span class="params">(Component component)</span> &#123;&#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 点击监听事件</span></span><br><span class="line">        listContainer.setItemClickedListener((container, component, position, id) -&gt; &#123;</span><br><span class="line">            <span class="type">SampleItem</span> <span class="variable">item</span> <span class="operator">=</span> (SampleItem) listContainer.getItemProvider().getItem(position);</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">ToastDialog</span>(<span class="built_in">this</span>)</span><br><span class="line">                    .setText(<span class="string">&quot;you clicked:&quot;</span> + item.getName())</span><br><span class="line">                    <span class="comment">// Toast显示在界面中间</span></span><br><span class="line">                    .setAlignment(LayoutAlignment.CENTER)</span><br><span class="line">                    .show();</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 长按监听事件</span></span><br><span class="line">        listContainer.setItemLongClickedListener((container, component, position, id) -&gt; &#123;</span><br><span class="line">            <span class="type">SampleItem</span> <span class="variable">item</span> <span class="operator">=</span> (SampleItem) listContainer.getItemProvider().getItem(position);</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">ToastDialog</span>(<span class="built_in">this</span>)</span><br><span class="line">                    .setText(<span class="string">&quot;you long clicked:&quot;</span> + item.getName())</span><br><span class="line">                    .setAlignment(LayoutAlignment.CENTER)</span><br><span class="line">                    .show();</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ArrayList&lt;SampleItem&gt; <span class="title function_">getData</span><span class="params">()</span> &#123;</span><br><span class="line">        ArrayList&lt;SampleItem&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;= <span class="number">8</span>; i++) &#123;</span><br><span class="line">            list.add(<span class="keyword">new</span> <span class="title class_">SampleItem</span>(<span class="string">&quot;Item&quot;</span> + i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActive</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onActive();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onForeground</span><span class="params">(Intent intent)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onForeground(intent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="美化组件"><a href="#美化组件" class="headerlink" title="美化组件"></a>美化组件</h2><p>美化的文件写在 <code>graphic</code>  的包中。</p>
+<h3 id="形状美化"><a href="#形状美化" class="headerlink" title="形状美化"></a>形状美化</h3><p><code>xmlns:ohos=&quot;http://schemas.huawei.com/res/ohos&quot;</code> 是命名空间。</p>
+<p>根标签：属性 shape 的值：</p>
+<ul>
+<li>rectangle：长方形</li>
+<li>oval：圆形</li>
+<li>…</li>
+</ul>
+<p>子标签：</p>
+<ul>
+<li>stroke：边框设置<ul>
+<li>color：颜色</li>
+<li>width：宽度</li>
+</ul>
+</li>
+<li>bounds：边框设置<ul>
+<li>top、right、left、bottom：上下左右单独设置。</li>
+</ul>
+</li>
+<li>gradient：渐变<ul>
+<li>shader_tyoe：有三个值<ul>
+<li>sweep_gradient：暂时没有效果。</li>
+<li>radial_gradient：辐射渐变，solid中需要使用多个颜色。</li>
+<li>linear_gradient：线性渐变</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>soild：背景色<ul>
+<li>color：颜色</li>
+<li>colors：多个颜色，需要逗号隔开，<code>ohos:colors=&quot;#009911,#889977&quot;</code></li>
+</ul>
+</li>
+<li>corners：设置圆角<ul>
+<li>radius：四个角同时设置，同理：left_top_y；left_top_x；left_bottom_y；left_bottom_x；right_bottom_y；right_bottom_x；right_top_y；right_top_x；</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">shape</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:ohos</span>=<span class="string">&quot;http://schemas.huawei.com/res/ohos&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">ohos:shape</span>=<span class="string">&quot;rectangle&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stroke</span></span></span><br><span class="line"><span class="tag">        <span class="attr">ohos:color</span>=<span class="string">&quot;#21ABCD&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">ohos:width</span>=<span class="string">&quot;2vp&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">shape</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="状态美化"><a href="#状态美化" class="headerlink" title="状态美化"></a>状态美化</h3><p>根标签：state-container</p>
+<p>子标签：</p>
+<ul>
+<li>item<ul>
+<li>state<ul>
+<li>component_state_checked：开启状态</li>
+<li>component_state_pressed：按下不松开的状态</li>
+<li>component_state_empty：默认状态（<strong>必须要写在最下面</strong>）</li>
+<li>…</li>
+</ul>
+</li>
+<li>element：可写颜色；可添加图片资源</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/myimages/WeChat.jpg" alt="Felix/蔡济阳 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/myimages/AliPay.jpg" alt="Felix/蔡济阳 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Felix/蔡济阳
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://felixcjy.cn/2022/01/25/5%20%E7%A7%BB%E5%8A%A8%E7%AB%AF/5.2%20HarmonyOS/5.2.1%20HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/UI/" title="Harmony应用开发基础-UI">https://felixcjy.cn/2022/01/25/5 移动端/5.2 HarmonyOS/5.2.1 HarmonyOS应用开发/UI/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN,en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/" rel="tag"># HarmonyOS应用开发</a>
+              <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" rel="tag"># 移动端</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/01/02/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.4%20%E4%B8%AD%E9%97%B4%E4%BB%B6/1.1.4.1%20%E7%BC%93%E5%AD%98/1.1.4.1.1%20Redis/Redis%E8%BF%9E%E6%8E%A5/" rel="prev" title="Redis 连接">
+                  <i class="fa fa-chevron-left"></i> Redis 连接
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/01/26/5%20%E7%A7%BB%E5%8A%A8%E7%AB%AF/5.2%20HarmonyOS/5.2.1%20HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/Ability%E6%A1%86%E6%9E%B6/" rel="next" title="Harmony应用开发基础-Ability框架">
+                  Harmony应用开发基础-Ability框架 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">豫ICP备20018119号-1 </a>
+      <img src="/myimages/beian.png" alt=""><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41152302000155" rel="noopener" target="_blank">41152302000155 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2018 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Felix/蔡济阳</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Caijiyang" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

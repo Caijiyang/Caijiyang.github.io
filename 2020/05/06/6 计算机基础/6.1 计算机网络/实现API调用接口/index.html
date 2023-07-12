@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"felixcjy.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="阿里云Apsara Clouder专项技能认证课程 《实现 API 调用接口》笔记 讲解了API接口是如何调用的（阿里云接口为例）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实现 API 调用接口">
+<meta property="og:url" content="https://felixcjy.cn/2020/05/06/6%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/6.1%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%AE%9E%E7%8E%B0API%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3/index.html">
+<meta property="og:site_name" content="软件工程学习记录">
+<meta property="og:description" content="阿里云Apsara Clouder专项技能认证课程 《实现 API 调用接口》笔记 讲解了API接口是如何调用的（阿里云接口为例）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-06T14:40:38.000Z">
+<meta property="article:modified_time" content="2023-07-12T03:36:02.725Z">
+<meta property="article:author" content="Felix&#x2F;蔡济阳">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="HTTP">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://felixcjy.cn/2020/05/06/6%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/6.1%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%AE%9E%E7%8E%B0API%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://felixcjy.cn/2020/05/06/6%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/6.1%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%AE%9E%E7%8E%B0API%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3/","path":"2020/05/06/6 计算机基础/6.1 计算机网络/实现API调用接口/","title":"实现 API 调用接口"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>实现 API 调用接口 | 软件工程学习记录</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?13b96e46c6da189ca2c0427d8c4295e4"></script>
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">软件工程学习记录</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Felix/蔡济阳 个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-API-%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.</span> <span class="nav-text">实现 API 调用接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#API-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">API 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API-%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.1.</span> <span class="nav-text">API 的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">1.1.2.</span> <span class="nav-text">API 的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.3.</span> <span class="nav-text">API 的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8-API"><span class="nav-number">1.1.4.</span> <span class="nav-text">为什么要使用 API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API%E7%9A%84%E8%AF%B7%E6%B1%82%E4%B8%8E%E8%AE%A4%E8%AF%81"><span class="nav-number">1.2.</span> <span class="nav-text">API的请求与认证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-API-%E5%8D%8F%E8%AE%AE%E5%8F%8A-HTTP-%E8%AF%B7%E6%B1%82"><span class="nav-number">1.2.1.</span> <span class="nav-text">Web API 协议及 HTTP 请求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">HTTP请求包含的内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API-%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">API 请求方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">返回状态码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">返回数据格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API-%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E5%8F%8A%E7%AD%BE%E5%90%8D%E8%AE%A4%E8%AF%81"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">API 身份认证及签名认证</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-%E8%B0%83%E8%AF%95%E5%92%8C%E8%B0%83%E7%94%A8%EF%BC%88%E9%98%BF%E9%87%8C%E4%BA%91%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">API 调试和调用（阿里云）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API-%E8%B0%83%E8%AF%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">API 调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-%E8%B0%83%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.3.2.</span> <span class="nav-text">API 调用步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E7%94%A8-API"><span class="nav-number">1.3.3.</span> <span class="nav-text">调用 API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-%E8%B0%83%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.3.4.</span> <span class="nav-text">API 调用注意事项</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Felix/蔡济阳"
+      src="/myimages/Pixels_trophy.png">
+  <p class="site-author-name" itemprop="name">Felix/蔡济阳</p>
+  <div class="site-description" itemprop="description">记录学习的点滴</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Caijiyang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Caijiyang" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:caijiyan6@163.com" title="E-Mail → mailto:caijiyan6@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN,en" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/Caijiyang" title="https:&#x2F;&#x2F;github.com&#x2F;Caijiyang" rel="noopener" target="_blank">GitHub</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://gitee.com/caijiyang" title="https:&#x2F;&#x2F;gitee.com&#x2F;caijiyang" rel="noopener" target="_blank">Gitee</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.csdn.net/qq_43266597?spm=1000.2115.3001.5343" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43266597?spm&#x3D;1000.2115.3001.5343" rel="noopener" target="_blank">CSDN</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://felixcjy.cn/2020/05/06/6%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/6.1%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%AE%9E%E7%8E%B0API%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myimages/Pixels_trophy.png">
+      <meta itemprop="name" content="Felix/蔡济阳">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="软件工程学习记录">
+      <meta itemprop="description" content="记录学习的点滴">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="实现 API 调用接口 | 软件工程学习记录">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          实现 API 调用接口
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-06 22:40:38" itemprop="dateCreated datePublished" datetime="2020-05-06T22:40:38+08:00">2020-05-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-12 11:36:02" itemprop="dateModified" datetime="2023-07-12T11:36:02+08:00">2023-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/6-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">6 计算机基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/6-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/6-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">6.1 计算机网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>阿里云Apsara Clouder专项技能认证课程 《实现 API 调用接口》笔记</p>
+<p>讲解了API接口是如何调用的（阿里云接口为例）</p>
+<span id="more"></span>
+
+<h1 id="实现-API-调用接口"><a href="#实现-API-调用接口" class="headerlink" title="实现 API 调用接口"></a>实现 API 调用接口</h1><h2 id="API-简介"><a href="#API-简介" class="headerlink" title="API 简介"></a>API 简介</h2><h3 id="API-的概念"><a href="#API-的概念" class="headerlink" title="API 的概念"></a>API 的概念</h3><p>API(Application Programming Interface) </p>
+<p>应用程序编程接口是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一次例程的能力，而又无需访问源码或理解内部工作机制的细节。</p>
+<h3 id="API-的特点"><a href="#API-的特点" class="headerlink" title="API 的特点"></a>API 的特点</h3><ul>
+<li>一个明确定义的接口，可以为其他软件提供特定服务。</li>
+<li>可以小到只包含一个单独的函数，也可以大到包含数以百计的类、方法、全局函数、数据类型、枚举类型和常量等。</li>
+<li>可以小到只包含一个单独的函数，也可以大到包含数以百计的类、方法、全局函数、数据类型、枚举类型和常量等。</li>
+<li>API 的实现是私有的，也可以是开源的。</li>
+</ul>
+<h3 id="API-的分类"><a href="#API-的分类" class="headerlink" title="API 的分类"></a>API 的分类</h3><ul>
+<li><p>面向对象语言的 API</p>
+<blockquote>
+<p>例：Java API 列表</p>
+</blockquote>
+</li>
+<li><p>库与框架的 API </p>
+<blockquote>
+<p>例：Windows API、Windows DirectX</p>
+</blockquote>
+</li>
+<li><p>API 与协议</p>
+<blockquote>
+<p>例：LDAP 应用程序接口</p>
+</blockquote>
+</li>
+<li><p>API 与设备接口</p>
+<blockquote>
+<p>例：PC BIOS 调用接口、ASPI for SCSI 设备接口</p>
+</blockquote>
+</li>
+<li><p>Web API</p>
+<blockquote>
+<p>例：Google 地图 API、新浪微博 API、阿里云 API 市场</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="为什么要使用-API"><a href="#为什么要使用-API" class="headerlink" title="为什么要使用 API"></a>为什么要使用 API</h3><ul>
+<li>快速扩展功能</li>
+<li>避免“造轮子”，提高开发效率</li>
+<li>降低模块之间的耦合度</li>
+</ul>
+<h2 id="API的请求与认证"><a href="#API的请求与认证" class="headerlink" title="API的请求与认证"></a>API的请求与认证</h2><h3 id="Web-API-协议及-HTTP-请求"><a href="#Web-API-协议及-HTTP-请求" class="headerlink" title="Web API 协议及 HTTP 请求"></a>Web API 协议及 HTTP 请求</h3><p>好处：客户端与服务端的开发语言无关，利于微服务和分布式的开发。</p>
+<ul>
+<li>客户端向服务器发送一个请求</li>
+<li>服务器给客户端一个响应，告诉客户端是否可以完成它请求的工作</li>
+</ul>
+<h4 id="HTTP请求包含的内容"><a href="#HTTP请求包含的内容" class="headerlink" title="HTTP请求包含的内容"></a>HTTP请求包含的内容</h4><p>URL（API调用地址）、请求方式、Headers（请求头）、Body（请求主体）</p>
+<ul>
+<li><p>Headers（请求头）</p>
+<blockquote>
+<p>提供了请求的元信息，是一个简单的项目列表，其中有客户端发送请求的时间和请求主体的大小、身份认证等信息。</p>
+</blockquote>
+</li>
+<li><p>Body（请求主体）</p>
+<blockquote>
+<p>包含了客户端希望发送给服务器的数据。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="API-请求方式"><a href="#API-请求方式" class="headerlink" title="API 请求方式"></a>API 请求方式</h4><p>常见的主要有四种：</p>
+<ul>
+<li>GET  请求服务器获取一个资源</li>
+<li>POST 请求服务器创建一个新的资源</li>
+<li>PUT 请求服务器编辑或更新一个已存在的资源</li>
+<li>DELETE 请求服务器删除一个资源</li>
+</ul>
+<h4 id="返回状态码"><a href="#返回状态码" class="headerlink" title="返回状态码"></a>返回状态码</h4><ul>
+<li>成功调用 API 后会有返回一个状体码，例如成功返回 2xx;</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>HTTP 状态码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200 OK - [GET]</td>
+<td>服务器成功返回用户请求的数据</td>
+</tr>
+<tr>
+<td>204 NO CONNTENT - [DELETE]</td>
+<td>用户数据删除成功</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>未调用成功，会返回 5xx 表示服务不可用；</p>
+<blockquote>
+<p>例如：500 API 网关内部错误&#x2F;底层服务错误；503 服务不可用，504 后端服务超时。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="返回数据格式"><a href="#返回数据格式" class="headerlink" title="返回数据格式"></a>返回数据格式</h4><ul>
+<li><p>json 格式（多采用）</p>
+<ul>
+<li><p>表示对象，键值对类型</p>
+<blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;a&quot;</span><span class="punctuation">,</span><span class="attr">&quot;age&quot;</span><span class="punctuation">:</span><span class="number">20</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>表示数组，采用方括号</p>
+</li>
+<li><p>如下：</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span><span class="number">2000</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;a&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;age&quot;</span><span class="punctuation">:</span><span class="number">19</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;b&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;age&quot;</span><span class="punctuation">:</span><span class="number">20</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>xml 格式</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">country</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>中国<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">province</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>河南<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">province</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">province</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>广州<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">province</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">country</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="API-身份认证及签名认证"><a href="#API-身份认证及签名认证" class="headerlink" title="API 身份认证及签名认证"></a>API 身份认证及签名认证</h4><ul>
+<li>API 有不同的认证方式</li>
+</ul>
+<p>再阿里云中，有两种认证方式</p>
+<ul>
+<li><p>简单认证，基于 APPCODE 方式</p>
+<blockquote>
+<p>如果 APPCODE 获取 API 访问权限</p>
+</blockquote>
+<ul>
+<li>请求头 Header 添加 Authorization 字段；</li>
+<li>配置 Authorization 字段的值为 “APPCODE + 半角空格 + APPCODE 值”</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Authorization:APPCODE 123456789ABC</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>签名认证方式，AppKey &amp; AppSecret</p>
+<blockquote>
+<p>AppKey 和 AppSecret 相当于当前账户的另外一套账号和密码机制，再控制台找到对于的 AppKey 和 AppSecret</p>
+<p>具体使用方式在调用时会有官网介绍。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="API-调试和调用（阿里云）"><a href="#API-调试和调用（阿里云）" class="headerlink" title="API 调试和调用（阿里云）"></a>API 调试和调用（阿里云）</h2><h3 id="API-调试"><a href="#API-调试" class="headerlink" title="API 调试"></a>API 调试</h3><p>阿里云 api 市场提供在线调试功能</p>
+<h3 id="API-调用步骤"><a href="#API-调用步骤" class="headerlink" title="API 调用步骤"></a>API 调用步骤</h3><p>获取 api 文档–创建应用–获取授权–调用 api</p>
+<h3 id="调用-API"><a href="#调用-API" class="headerlink" title="调用 API"></a>调用 API</h3><p>调用 api 三个基础条件:</p>
+<ul>
+<li>api</li>
+<li>应用 app</li>
+<li>api 和 app 的权限关系</li>
+</ul>
+<h3 id="API-调用注意事项"><a href="#API-调用注意事项" class="headerlink" title="API 调用注意事项"></a>API 调用注意事项</h3><ul>
+<li>每个账号下 APP 的个数上限为10个,app 名称应用为账号下唯一</li>
+<li>调用 api 的流控限制为,单个 ip,qps 不超过100</li>
+<li>用户有权操作购买的 api 与 app 的授权和解除授权.由服务提供方授权给你的 app 的api,用户无权操作解除授权</li>
+<li>用户的请求需要包含签名信息</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/myimages/WeChat.jpg" alt="Felix/蔡济阳 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/myimages/AliPay.jpg" alt="Felix/蔡济阳 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Felix/蔡济阳
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://felixcjy.cn/2020/05/06/6%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/6.1%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%AE%9E%E7%8E%B0API%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3/" title="实现 API 调用接口">https://felixcjy.cn/2020/05/06/6 计算机基础/6.1 计算机网络/实现API调用接口/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN,en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/API/" rel="tag"># API</a>
+              <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/09/01/top/" rel="prev" title="欢迎你的到来">
+                  <i class="fa fa-chevron-left"></i> 欢迎你的到来
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/05/10/1%20%E5%90%8E%E7%AB%AF/1.2%20Python/Python%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" rel="next" title="Python学习路线-Python语言基础-1">
+                  Python学习路线-Python语言基础-1 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">豫ICP备20018119号-1 </a>
+      <img src="/myimages/beian.png" alt=""><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41152302000155" rel="noopener" target="_blank">41152302000155 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2018 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Felix/蔡济阳</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Caijiyang" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

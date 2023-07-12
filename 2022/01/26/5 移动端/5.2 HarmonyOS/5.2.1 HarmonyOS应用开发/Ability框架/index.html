@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"felixcjy.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Ability框架的基础知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Harmony应用开发基础-Ability框架">
+<meta property="og:url" content="https://felixcjy.cn/2022/01/26/5%20%E7%A7%BB%E5%8A%A8%E7%AB%AF/5.2%20HarmonyOS/5.2.1%20HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/Ability%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:site_name" content="软件工程学习记录">
+<meta property="og:description" content="Ability框架的基础知识。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-26T07:43:15.000Z">
+<meta property="article:modified_time" content="2023-07-12T03:33:04.346Z">
+<meta property="article:author" content="Felix&#x2F;蔡济阳">
+<meta property="article:tag" content="HarmonyOS应用开发">
+<meta property="article:tag" content="移动端">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://felixcjy.cn/2022/01/26/5%20%E7%A7%BB%E5%8A%A8%E7%AB%AF/5.2%20HarmonyOS/5.2.1%20HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/Ability%E6%A1%86%E6%9E%B6/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://felixcjy.cn/2022/01/26/5%20%E7%A7%BB%E5%8A%A8%E7%AB%AF/5.2%20HarmonyOS/5.2.1%20HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/Ability%E6%A1%86%E6%9E%B6/","path":"2022/01/26/5 移动端/5.2 HarmonyOS/5.2.1 HarmonyOS应用开发/Ability框架/","title":"Harmony应用开发基础-Ability框架"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Harmony应用开发基础-Ability框架 | 软件工程学习记录</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?13b96e46c6da189ca2c0427d8c4295e4"></script>
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">软件工程学习记录</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Felix/蔡济阳 个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ability%E6%A1%86%E6%9E%B6"><span class="nav-number">1.</span> <span class="nav-text">Ability框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ability"><span class="nav-number">1.1.</span> <span class="nav-text">Ability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Page-Ability"><span class="nav-number">1.1.1.</span> <span class="nav-text">Page Ability</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AbilitySlice%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">AbilitySlice路由配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%A8%E8%AE%BE%E5%A4%87%E8%BF%81%E7%A7%BB"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">*跨设备迁移</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E8%B0%83%E5%BA%A6%E7%9A%84%E7%BA%A6%E6%9D%9F%E4%B8%8E%E9%99%90%E5%88%B6"><span class="nav-number">1.1.1.2.0.1.</span> <span class="nav-text">实现调度的约束与限制</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%89%E7%B1%BB%E5%9C%BA%E6%99%AF"><span class="nav-number">1.1.1.2.0.2.</span> <span class="nav-text">三类场景</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E7%94%A8%E5%88%B0%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.1.1.2.0.3.</span> <span class="nav-text">需要用到的接口</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Ability"><span class="nav-number">1.1.2.</span> <span class="nav-text">Service Ability</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-Serice"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">创建 Serice</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8-x2F-%E5%81%9C%E6%AD%A2-Service"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">启动&#x2F;停止 Service</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5-x2F-%E5%81%9C%E6%AD%A2-Service"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">*连接&#x2F;停止 Service</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Ability"><span class="nav-number">1.1.3.</span> <span class="nav-text">Data Ability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intent"><span class="nav-number">1.1.4.</span> <span class="nav-text">Intent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AC%E5%85%B1%E4%BA%8B%E4%BB%B6%E5%92%8C%E9%80%9A%E7%9F%A5"><span class="nav-number">1.2.</span> <span class="nav-text">公共事件和通知</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AC%E5%85%B1%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.2.1.</span> <span class="nav-text">*公共事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E7%9F%A5"><span class="nav-number">1.2.2.</span> <span class="nav-text">通知</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NotificationSlot"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">NotificationSlot</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IntentAgent%E5%BC%80%E5%8F%91"><span class="nav-number">1.2.3.</span> <span class="nav-text">*IntentAgent开发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E5%8F%B0%E4%BB%A3%E7%90%86%E5%AE%9A%E6%97%B6%E6%8F%90%E9%86%92%E5%BC%80%E5%8F%91"><span class="nav-number">1.3.</span> <span class="nav-text">*后台代理定时提醒开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%92%8C%E7%AE%A1%E6%8E%A7"><span class="nav-number">1.4.</span> <span class="nav-text">后台任务调度和管控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.4.1.</span> <span class="nav-text">后台任务类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%AD%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.4.2.</span> <span class="nav-text">短时任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E9%A9%BB%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.4.3.</span> <span class="nav-text">长驻任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E5%8F%B0%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB"><span class="nav-number">1.4.4.</span> <span class="nav-text">后台模式分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%98%E7%AE%A1%E9%95%BF%E9%A9%BB%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.4.5.</span> <span class="nav-text">托管长驻任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FAQ"><span class="nav-number">1.4.6.</span> <span class="nav-text">FAQ</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-number">1.5.</span> <span class="nav-text">线程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TaskDispatcher"><span class="nav-number">1.5.1.</span> <span class="nav-text">TaskDispatcher</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%85%AB%E7%A7%8D%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.5.2.</span> <span class="nav-text">*创建八种任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E5%BC%80%E5%8F%91"><span class="nav-number">1.5.3.</span> <span class="nav-text">*线程间通信开发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%AA%E5%88%87%E6%9D%BF"><span class="nav-number">1.6.</span> <span class="nav-text">剪切板</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Felix/蔡济阳"
+      src="/myimages/Pixels_trophy.png">
+  <p class="site-author-name" itemprop="name">Felix/蔡济阳</p>
+  <div class="site-description" itemprop="description">记录学习的点滴</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Caijiyang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Caijiyang" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:caijiyan6@163.com" title="E-Mail → mailto:caijiyan6@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN,en" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/Caijiyang" title="https:&#x2F;&#x2F;github.com&#x2F;Caijiyang" rel="noopener" target="_blank">GitHub</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://gitee.com/caijiyang" title="https:&#x2F;&#x2F;gitee.com&#x2F;caijiyang" rel="noopener" target="_blank">Gitee</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.csdn.net/qq_43266597?spm=1000.2115.3001.5343" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43266597?spm&#x3D;1000.2115.3001.5343" rel="noopener" target="_blank">CSDN</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://felixcjy.cn/2022/01/26/5%20%E7%A7%BB%E5%8A%A8%E7%AB%AF/5.2%20HarmonyOS/5.2.1%20HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/Ability%E6%A1%86%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myimages/Pixels_trophy.png">
+      <meta itemprop="name" content="Felix/蔡济阳">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="软件工程学习记录">
+      <meta itemprop="description" content="记录学习的点滴">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Harmony应用开发基础-Ability框架 | 软件工程学习记录">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Harmony应用开发基础-Ability框架
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-26 15:43:15" itemprop="dateCreated datePublished" datetime="2022-01-26T15:43:15+08:00">2022-01-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-12 11:33:04" itemprop="dateModified" datetime="2023-07-12T11:33:04+08:00">2023-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/5-%E7%A7%BB%E5%8A%A8%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">5 移动端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/5-%E7%A7%BB%E5%8A%A8%E7%AB%AF/5-2-HarmonyOS/" itemprop="url" rel="index"><span itemprop="name">5.2 HarmonyOS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/5-%E7%A7%BB%E5%8A%A8%E7%AB%AF/5-2-HarmonyOS/5-2-1-HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">5.2.1 HarmonyOS应用开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Ability框架的基础知识。</p>
+<span id="more"></span>
+
+<h1 id="Ability框架"><a href="#Ability框架" class="headerlink" title="Ability框架"></a>Ability框架</h1><h2 id="Ability"><a href="#Ability" class="headerlink" title="Ability"></a>Ability</h2><p>Ability是应用所具备能力的抽象，也是应用程序的重要组成部分。Ability可以分为FA（Feature Ability）和PA（Particle Ability）两种类型，每种类型为开发者提供了不同的模板，以便实现不同的业务功能。</p>
+<p>FA支持Page Ability，PA支持Service Ability和Data Ability。</p>
+<h3 id="Page-Ability"><a href="#Page-Ability" class="headerlink" title="Page Ability"></a>Page Ability</h3><p>Page模板（以下简称“Page”）是FA唯一支持的模板，用于提供与用户交互的能力。一个Page可以由一个或多个AbilitySlice构成，AbilitySlice是指应用的单个页面及其控制逻辑的总和。</p>
+<h4 id="AbilitySlice路由配置"><a href="#AbilitySlice路由配置" class="headerlink" title="AbilitySlice路由配置"></a>AbilitySlice路由配置</h4><p>可以通过**addActionRoute()**方法为此AbilitySlice配置一条路由规则。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在 MyAbility 中</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyAbility</span> <span class="keyword">extends</span> <span class="title class_">Ability</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">(Intent intent)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onStart(intent);</span><br><span class="line">        <span class="comment">// set the main route</span></span><br><span class="line">        setMainRoute(MainSlice.class.getName());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// set the action route</span></span><br><span class="line">        addActionRoute(<span class="string">&quot;action.pay&quot;</span>, PaySlice.class.getName());</span><br><span class="line">        addActionRoute(<span class="string">&quot;action.scan&quot;</span>, ScanSlice.class.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 config.json 中</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;module&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;abilities&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;skills&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span></span><br><span class="line">                    <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;actions&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span></span><br><span class="line">                            <span class="string">&quot;action.pay&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="string">&quot;action.scan&quot;</span></span><br><span class="line">                        <span class="punctuation">]</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">]</span></span><br><span class="line">                ...</span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>同一Page内导航</li>
+</ul>
+<p>当发起导航的AbilitySlice和导航目标的AbilitySlice处于同一个Page时，可以通过present()方法实现导航。</p>
+<p>如果开发者希望在用户从导航目标AbilitySlice返回时，能够获得其返回结果，则应当使用presentForResult()实现导航。用户从导航目标AbilitySlice返回时，系统将回调onResult()来接收和处理返回结果，开发者需要重写该方法。返回结果由导航目标AbilitySlice在其生命周期内通过setResult()进行设置。</p>
+<ul>
+<li>不同Page间导航</li>
+</ul>
+<p>AbilitySlice作为Page的内部单元，以Action的形式对外暴露，因此可以通过配置Intent的Action导航到目标AbilitySlice。Page间的导航可以使用startAbility()或startAbilityForResult()方法，获得返回结果的回调为onAbilityResult()。在Ability中调用setResult()可以设置返回结果。</p>
+<h4 id="跨设备迁移"><a href="#跨设备迁移" class="headerlink" title="*跨设备迁移"></a>*跨设备迁移</h4><p>在 HarmonyOS 中，分布式任务调度平台对搭载 HarmonysOS 的多设备构筑的“超级虚拟终端”提供统一的组件管理能力，为应用定义统一的能力极限、接口形式、数据结构、服务描述语言，屏蔽硬件差异；支持远程启动、远程调用、业务无缝迁移等分布式任务。</p>
+<h6 id="实现调度的约束与限制"><a href="#实现调度的约束与限制" class="headerlink" title="实现调度的约束与限制"></a>实现调度的约束与限制</h6><ol>
+<li><p>远程调用 PA&#x2F;FA，开发者需要在 Intent 中设置分布式的标记（例如：<code>Intent.FLAG_ABILITYSLICE_DEVICE</code> 表示该应用支持分布式调度），否则将无法获得分布式能力。</p>
+</li>
+<li><p>开发者可以通过 <code>config.josn</code> 中的 <code>reqPermissions</code> 字段里添加权限申请：</p>
+<ol>
+<li><p>以获取跨设备链接的能力和分布式数据传输的权限。</p>
+<p>分布式数据传输的权限：</p>
+<p><code>&#123;&quot;name&quot;:&quot;ohos.permission.servicebus.ACCESS_SERVICE&quot;&#125;</code><br>三方应用使用权限：</p>
+<p><code>&#123;&quot;name&quot;:&quot;ohos.permission.servicebus.DISTRIBUTED_DATASYNC&quot;&#125;</code><br>系统应用使用权限：</p>
+<p><code>&#123;&quot;name&quot;:&quot;ohos.huawei.hwddmp.servicebus.BIND_SERVICE&quot;&#125;</code></p>
+</li>
+<li><p>另外还有三个获取分布式设备信息需要的权限：</p>
+<p><code>&quot;name&quot;:&quot;ohos.permission.DISTURIBUTED_DEIVCE_STATE_CHANGE&quot;</code><br><code>&quot;name&quot;:&quot;ohos.permission.GET_DISTRIBUTED_DEVICE_INFO&quot;</code></p>
+<p><code>&quot;name&quot;:&quot;ohos.permission.GET_BUNEDLE_INFO&quot;</code></p>
+<p><strong>注意：还需要在Ability里主动声明需要用到的权限。</strong></p>
+</li>
+<li><p>FA（Feature Ability，Page模板的Ability）的调用支持启动和迁移行为，在进行调度时：</p>
+<ol>
+<li>当启动FA时，需要开发者在Intent中指定对端设备的<code>deviceId</code>、<code>bundleName</code>和<code>abilityName</code>。</li>
+<li>FA的迁移实现相同<code>bundleName</code>和<code>abilityName</code>的FA跨设备迁移，因此需要指定迁移设备的<code>deviceId</code>。</li>
+</ol>
+</li>
+</ol>
+<h6 id="三类场景"><a href="#三类场景" class="headerlink" title="三类场景"></a>三类场景</h6><p>设备A（本地）、设备B（远端）。</p>
+<pre><code>  1. A 启动 B 的 FA
+  2. A 的 FA 迁移至设备 B
+  3. A 的 FA 迁移至设备 B，可主动撤回迁移。
+</code></pre>
+<h6 id="需要用到的接口"><a href="#需要用到的接口" class="headerlink" title="需要用到的接口"></a>需要用到的接口</h6><ol>
+<li><p>启动远程 FA </p>
+<p><code>startAbility(Intent intent)</code> 接口提供启动指定设备上 FA 和 PA 的能力，Intent 指定带启动 FA 的设备 <code>deviceId</code>、<code>bundleName</code>和<code>abilityName</code>。</p>
+</li>
+<li><p>迁移 FA</p>
+<p><code>continueAbility(String deviceId)</code> 接口提供将本地 FA 迁移到指定设备上的能力。</p>
+<p><code>continueAbilityReversibly(String deviceId)</code> 接口提供将本地 FA 迁移到指定设备上的能力，这种迁移可撤回，<code>reverseContinueAbility()</code> 接口提供撤回迁移的能力。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="Service-Ability"><a href="#Service-Ability" class="headerlink" title="Service Ability"></a>Service Ability</h3><p>基于Service模板的Ability（以下简称“Service”）主要用于后台运行任务（如执行音乐播放、文件下载等），但不提供用户交互界面。Service可由其他应用或Ability启动，即使用户切换到其他应用，Service仍将在后台继续运行。</p>
+<p>Service是单实例的。在一个设备上，相同的Service只会存在一个实例。</p>
+<p>如果多个Ability共用这个实例，只有当与Service绑定的所有Ability都退出后，Service才能够退出。</p>
+<p>由于Service是在主线程里执行的，因此，如果在Service里面的操作时间过长，开发者必须在Service里创建新的线程来处理（详见<a target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/inter-thread-overview-0000000000038958">线程间通信</a>），防止造成主线程阻塞，应用程序无响应。</p>
+<h4 id="创建-Serice"><a href="#创建-Serice" class="headerlink" title="创建 Serice"></a>创建 Serice</h4><p>创建 service 很简单，只需要继承 Ability，然后在 config.json 中注册 service 即可。</p>
+<ul>
+<li><p>onStart()</p>
+<p>该方法在创建Service的时候调用，用于Service的初始化。在Service的整个生命周期只会调用一次，调用时传入的Intent应为空。</p>
+</li>
+<li><p>onCommand()</p>
+<p>在Service创建完成之后调用，该方法在客户端每次启动该Service时都会调用，开发者可以在该方法中做一些调用统计、初始化类的操作。</p>
+</li>
+<li><p>onConnect()</p>
+<p>在Ability和Service连接时调用，该方法返回IRemoteObject对象，开发者可以在该回调函数中生成对应Service的IPC通信通道，以便Ability与Service交互。Ability可以多次连接同一个Service，系统会缓存该Service的IPC通信对象，只有第一个客户端连接Service时，系统才会调用Service的onConnect方法来生成IRemoteObject对象，而后系统会将同一个RemoteObject对象传递至其他连接同一个Service的所有客户端，而无需再次调用onConnect方法。</p>
+</li>
+<li><p>onDisconnect()</p>
+<p>在Ability与绑定的Service断开连接时调用。</p>
+</li>
+<li><p>onStop()</p>
+<p>在Service销毁时调用。Service应通过实现此方法来清理任何资源，如关闭线程、注册的侦听器等。</p>
+</li>
+</ul>
+<h4 id="启动-x2F-停止-Service"><a href="#启动-x2F-停止-Service" class="headerlink" title="启动&#x2F;停止 Service"></a>启动&#x2F;停止 Service</h4><p>Ability为开发者提供了<code>startAbility()</code>方法来启动另外一个Ability。因为Service也是Ability的一种，开发者同样可以通过将<a target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ability-intent-0000000000038799">Intent</a>传递给该方法来启动Service。不仅支持启动本地Service，还支持启动远程Service。<strong>启动 service 主要用于启动一个服务后台任务或者远程启动一个功能，不进行通信，不需要返回数据。</strong> 例如，设备A启动设备B，播放音乐。</p>
+<p>开发者可以通过构造包含DeviceId、BundleName与AbilityName的Operation对象来设置目标Service信息。这三个参数的含义如下：</p>
+<ul>
+<li>DeviceId：表示设备ID。如果是本地设备，则可以直接留空；如果是远程设备，可以通过<code>ohos.distributedschedule.interwork.DeviceManager</code>提供的<code>getDeviceList()</code>获取设备列表，详见<a target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-references/reference-document-outline-0000001115016824">Java API参考</a>。</li>
+<li>BundleName：表示包名称。</li>
+<li>AbilityName：表示待启动的Ability名称。</li>
+</ul>
+<p><strong>停止Service</strong></p>
+<p>Service一旦创建就会一直保持在后台运行，除非必须回收内存资源，否则系统不会停止或销毁Service。开发者可以在Service中通过<code>terminateAbility()</code>停止本Service或在其他Ability调用<code>stopAbility()</code>来停止Service。</p>
+<p>停止Service同样支持停止本地设备Service和停止远程设备Service，使用方法与启动Service一样。一旦调用停止Service的方法，系统便会尽快销毁Service。</p>
+<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><p>根据调用方法的不同，其生命周期有以下两种路径：</p>
+<ul>
+<li><p>启动Service</p>
+<p>该Service在其他Ability调用<code>startAbility()</code>时创建，然后保持运行。其他Ability通过调用<code>stopAbility()</code>来停止Service，Service停止后，系统会将其销毁。</p>
+</li>
+<li><p>连接Service</p>
+<p>该Service在其他Ability调用<code>connectAbility()</code>时创建，客户端可通过调用<code>disconnectAbility()</code>断开连接。多个客户端可以绑定到相同Service，而且当所有绑定全部取消后，系统即会销毁该Service。</p>
+<p><code>connectAbility()</code>也可以连接通过<code>startAbility()</code>创建的Service。</p>
+</li>
+</ul>
+<h4 id="连接-x2F-停止-Service"><a href="#连接-x2F-停止-Service" class="headerlink" title="*连接&#x2F;停止 Service"></a>*连接&#x2F;停止 Service</h4><p><strong>启动和链接的差异</strong> </p>
+<p><font color="red">启动是无需数据传输的，链接是有数据传输的。</font> </p>
+<p>连接 Service 后，可以进行通信，需要连接后的 Service 执行任务之后返回数据，<strong>要用连接，就不能使用启动</strong>。</p>
+<h3 id="Data-Ability"><a href="#Data-Ability" class="headerlink" title="Data Ability"></a>Data Ability</h3><p>使用Data模板的Ability（以下简称“Data”）有助于应用管理其自身和其他应用存储数据的访问，并提供与其他应用共享数据的方法。Data既可用于同设备不同应用的数据共享，也支持跨设备不同应用的数据共享。</p>
+<p>数据的存放形式多样，可以是数据库，也可以是磁盘上的文件。Data对外提供对数据的增、删、改、查，以及打开文件等接口，这些接口的具体实现由开发者提供。</p>
+<h3 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h3><p>Intent是对象之间传递信息的载体。例如，当一个Ability需要启动另一个Ability时，或者一个AbilitySlice需要导航到另一个AbilitySlice时，可以通过Intent指定启动的目标同时携带相关数据。Intent的构成元素包括Operation与Parameters。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>子属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Operation</td>
+<td>Action</td>
+<td>表示动作，通常使用系统预置Action，应用也可以自定义Action。例如IntentConstants.ACTION_HOME表示返回桌面动作。</td>
+</tr>
+<tr>
+<td></td>
+<td>Entity</td>
+<td>表示类别，通常使用系统预置Entity，应用也可以自定义Entity。例如Intent.ENTITY_HOME表示在桌面显示图标。</td>
+</tr>
+<tr>
+<td></td>
+<td>Uri</td>
+<td>表示Uri描述。如果在Intent中指定了Uri，则Intent将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。</td>
+</tr>
+<tr>
+<td></td>
+<td>Flags</td>
+<td>表示处理Intent的方式。例如Intent.FLAG_ABILITY_CONTINUATION标记在本地的一个Ability是否可以迁移到远端设备继续运行。</td>
+</tr>
+<tr>
+<td></td>
+<td>BundleName</td>
+<td>表示包描述。如果在Intent中同时指定了BundleName和AbilityName，则Intent可以直接匹配到指定的Ability。</td>
+</tr>
+<tr>
+<td></td>
+<td>AbilityName</td>
+<td>表示待启动的Ability名称。如果在Intent中同时指定了BundleName和AbilityName，则Intent可以直接匹配到指定的Ability。</td>
+</tr>
+<tr>
+<td></td>
+<td>DeviceId</td>
+<td>表示运行指定Ability的设备ID。</td>
+</tr>
+<tr>
+<td>Parameters</td>
+<td><strong>-</strong></td>
+<td>Parameters是一种支持自定义的数据结构，开发者可以通过Parameters传递某些请求所需的额外信息。</td>
+</tr>
+</tbody></table>
+<p>当Intent用于发起请求时，根据指定元素的不同，分为两种类型：</p>
+<ul>
+<li>如果同时指定了BundleName与AbilityName，则根据Ability的全称（例如“com.demoapp.FooAbility”）来直接启动应用。</li>
+<li>如果未同时指定BundleName和AbilityName，则根据Operation中的其他属性来启动应用。</li>
+</ul>
+<blockquote>
+<p>说明</p>
+<p>Intent设置属性时，必须先使用Operation来设置属性。如果需要新增或修改属性，必须在设置Operation后再执行操作。</p>
+</blockquote>
+<h2 id="公共事件和通知"><a href="#公共事件和通知" class="headerlink" title="公共事件和通知"></a>公共事件和通知</h2><h3 id="公共事件"><a href="#公共事件" class="headerlink" title="*公共事件"></a>*公共事件</h3><p>CES（Common Event Service，公共事件服务）：为应用程序提供订阅、发布、退订公共事件的能力，通过 ANS（Advanced Notification Service，通知增强服务）系统为应用程序提供发布通知的能力。</p>
+<p>公共事件可分为</p>
+<ul>
+<li>系统公共事件</li>
+<li>自定义公共事件</li>
+</ul>
+<h3 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h3><p>HarmonyOS提供了通知功能，即在一个应用的UI界面之外显示的消息，主要用来提醒用户有来自该应用中的信息。当应用向系统发出通知时，它将先以图标的形式显示在通知栏中，用户可以下拉通知栏查看通知的详细信息。常见的使用场景：</p>
+<ul>
+<li>显示接收到短消息、即时消息等。</li>
+<li>显示应用的推送消息，如广告、版本更新等。</li>
+<li>显示当前正在进行的事件，如播放音乐、导航、下载等。</li>
+</ul>
+<h4 id="NotificationSlot"><a href="#NotificationSlot" class="headerlink" title="NotificationSlot"></a>NotificationSlot</h4><p>NotificationSlot可以设置公共通知的震动，重要级别等，并通过调用NotificationHelper.addNotificationSlot()发布NotificationSlot对象。</p>
+<p>一个应用可以创建一个或多个NotificationSlot，在发布通知时，通过绑定不同的NotificationSlot，实现不同用途。</p>
+<ul>
+<li>说明</li>
+</ul>
+<p>NotificationSlot需要先通过NotificationHelper的addNotificationSlot(NotificationSlot)方法发布后，通知才能绑定使用；所有绑定该NotificationSlot的通知在发布后都具备相应的特性，对象在创建后，将无法更改这些设置，对于是否启动相应设置，用户有最终控制权。</p>
+<p>不指定NotificationSlot时，当前通知会使用默认的NotificationSlot，默认的NotificationSlot优先级为LEVEL_DEFAULT。</p>
+<h3 id="IntentAgent开发"><a href="#IntentAgent开发" class="headerlink" title="*IntentAgent开发"></a>*IntentAgent开发</h3><p>IntentAgent封装了一个指定行为的<a target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ability-intent-0000000000038799">Intent</a>，可以通过triggerIntentAgent接口主动触发，也可以与通知绑定被动触发。具体的行为包括：启动Ability和发布公共事件。例如：收到通知后，在点击通知后跳转到一个新的Ability，不点击则不会触发。</p>
+<h2 id="后台代理定时提醒开发"><a href="#后台代理定时提醒开发" class="headerlink" title="*后台代理定时提醒开发"></a>*后台代理定时提醒开发</h2><p>在应用开发时，可以调用后台代理提醒类ReminderRequest去创建定时提醒，包括倒计时、日历、闹钟三种提醒类型。使用后台代理提醒能力后，应用可以被冻结或退出，计时和弹出提醒的功能将被后台系统服务代理。</p>
+<h2 id="后台任务调度和管控"><a href="#后台任务调度和管控" class="headerlink" title="后台任务调度和管控"></a>后台任务调度和管控</h2><p>HarmonyOS将应用的资源使用生命周期划分为前台、后台和挂起三个阶段。</p>
+<ul>
+<li>前台：不受资源调度的约束</li>
+<li>后台：根据应用业务的具体任务情况进行资源使用管理</li>
+<li>挂起：会对应用的资源使用进行调度和控制约束，以保障其他体验类业务对资源的竞争使用。</li>
+</ul>
+<h3 id="后台任务类型"><a href="#后台任务类型" class="headerlink" title="后台任务类型"></a>后台任务类型</h3><ol>
+<li>无后台业务。</li>
+<li>短时任务。退出后有短时间需要完成的任务，例如数据压缩等。使用时 <strong>申请延迟进入挂起状态（Suspend）</strong> 。</li>
+<li>长驻任务：例如后台下载，后台播放音乐等，进入常驻任务避免挂起。</li>
+</ol>
+<h3 id="短时任务"><a href="#短时任务" class="headerlink" title="短时任务"></a>短时任务</h3><p>遵循如下规则：</p>
+<ul>
+<li>申请时机：允许应用在前台或在被挂起之间申请。默认退出再后台有 <strong>6~12秒运行时长</strong> 。</li>
+<li>超时（TimeOut）系统通过回调通知应用，应用需要 <strong>取消对应的延迟</strong> 或者 <strong>再次申请延迟挂起</strong> 。超过时间期限或不处理，将会被强制取消延迟挂起。</li>
+<li>取消时机：任务完成后应用应 <strong>主动取消延时申请</strong> 。</li>
+<li>配额机制：每个应用每天根据用户习惯会有一定的配额，根据用户的习惯动态调整。</li>
+</ul>
+<h3 id="长驻任务"><a href="#长驻任务" class="headerlink" title="长驻任务"></a>长驻任务</h3><p>长驻任务，可以通过使用长驻任务对应的后台模式保障业务在后台的运行，支撑应用在完成后台的业务。可以参考下一小节——后台模式分类。</p>
+<h3 id="后台模式分类"><a href="#后台模式分类" class="headerlink" title="后台模式分类"></a>后台模式分类</h3><p>HarmonyOS提供了十种后台模式，供需要在后台做长驻任务的业务使用，具体的后台模式类型如下：</p>
+<table>
+<thead>
+<tr>
+<th><strong>长驻任务后台模式</strong></th>
+<th><strong>英文名</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据传输</td>
+<td>data-transfer</td>
+<td>通过网络&#x2F;对端设备进行数据下载、备份、分享、传输等业务</td>
+</tr>
+<tr>
+<td>播音</td>
+<td>audio-playback</td>
+<td>音频输出业务</td>
+</tr>
+<tr>
+<td>录音</td>
+<td>audio-recording</td>
+<td>音频输入业务</td>
+</tr>
+<tr>
+<td>画中画</td>
+<td>picture-in-picture</td>
+<td>画中画、小窗口播放视频业务</td>
+</tr>
+<tr>
+<td>音视频通话</td>
+<td>voip</td>
+<td>音视频电话，VoIP业务</td>
+</tr>
+<tr>
+<td>导航&#x2F;位置更新</td>
+<td>location</td>
+<td>定位、导航业务</td>
+</tr>
+<tr>
+<td>蓝牙设备连接及传输</td>
+<td>bluetooth-interaction</td>
+<td>蓝牙扫描、连接、传输业务</td>
+</tr>
+<tr>
+<td>WLAN设备连接及传输</td>
+<td>wifi-interaction</td>
+<td>WLAN扫描、连接、传输业务</td>
+</tr>
+<tr>
+<td>屏幕抓取</td>
+<td>screen-fetch</td>
+<td>录屏、截屏业务</td>
+</tr>
+<tr>
+<td>多设备互联</td>
+<td>multiDeviceConnection</td>
+<td>多设备互联，分布式调度和迁移等业务</td>
+</tr>
+</tbody></table>
+<h3 id="托管长驻任务"><a href="#托管长驻任务" class="headerlink" title="托管长驻任务"></a>托管长驻任务</h3><p>托管任务</p>
+<p>托管任务是系统提供的一种后台代理机制。通过系统提供的代理API接口，用户可以把任务（如后台下载、定时提醒、后台非持续定位）交由系统托管。</p>
+<p>类型</p>
+<ol>
+<li>后台非持续性定位（non-sustained Location）：如果应用未申请location常驻模式，且在后台依然尝试获取位置信息，此时应用行为被视为使用非持续定位能力，后台非持续定位限制每30分钟提供一次位置信息。应用不需要高频次定位时，建议优先使用非持续定位。</li>
+<li>后台提醒代理（Reminder）：后台提醒代理主要提供了一种机制，使开发者在应用开发时，可以调用这些接口去创建定时提醒，包括倒计时、日历、闹钟三种提醒类型。使用后台代理提醒能力后，应用可以被冻结或退出，计时和弹出提醒的功能将被后台系统服务代理。参考：<a target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-references/reminderhelper-0000001170214417">Reminder接口使用说明</a>。</li>
+<li>后台下载代理：系统提供DownloadSession接口实现下载任务代理功能，应用提交下载任务后，应用被退出，下载任务仍然可以继续执行，且支持下载任务断点续传。参考：<a target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-references/downloadsession-0000001054358929">DownloadSession接口使用说明</a>。</li>
+</ol>
+<p>使用约束</p>
+<ol>
+<li>后台下载代理，系统会根据用户场景和设备状态，对不同的下载任务进行相应的管控，避免影响功耗和性能。</li>
+<li>后台非持续定位和后台提醒代理需要 <strong>申请对应的权限</strong> 。后台提醒需要申请 <code>ohos.permission.PUBLISH_AGENT_REMINDER</code> 权限，后台非持续定位需要申请 <code>ohos.permission.LOCATION和ohos.permission.LOCATION_IN_BACKGROUND</code>权限。</li>
+<li>资源滥用会影响系统性能和功耗，托管任务类型要与应用类型匹配；<a target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/background-task-schedule-control-0000001200249759#section11221128194512">匹配规则</a>。</li>
+</ol>
+<h3 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h3><p>Frequently Asked Questions</p>
+<ul>
+<li><p>什么样的应用不受后台任务调度和管控的约束，不被挂起（Suspend）？</p>
+<p>原则上所有应用都会受后台任务调度和管控的约束，仅仅是约束的时机和状态不同而已。系统提供了选择设置的方式供用户从使用需求维度干预后台任务调度和管控，以华为手机举例，设置路径：手机管家-&gt;应用启动管理-&gt;选择手动管理-&gt;允许后台活动。</p>
+</li>
+<li><p>应用后台任务调度和管控与那些因素有关？</p>
+<p>应用后台任务调度和管控以支撑用户使用体验为第一优先级，结合用户使用习惯、用户使用情景状态、设备模式状态、应用分类、应用资源占用统计等多个维度综合判断应用后台任务调度和管控的优先级。</p>
+</li>
+<li><p>后台任务调度和管控机制的适用范围？</p>
+<p>后台任务调度和管控机制仅对HarmonyOS应用进行调度和管控。</p>
+</li>
+</ul>
+<h2 id="线程管理"><a href="#线程管理" class="headerlink" title="线程管理"></a>线程管理</h2><p>不同应用在各自独立的进程中运行。当应用以任何形式启动时，系统为其创建 <strong>进程</strong>，该进程将持续运行。当进程完成当前任务处于等待状态，且系统资源不足时，系统自动回收。</p>
+<p>在启动应用时，系统会为该应用创建一个称为“主线程”的执行线程。该线程随着应用创建或消失，是应用的核心线程。UI界面的显示和更新等操作，都是在主线程上进行。主线程又称UI线程，默认情况下，所有的操作都是在主线程上执行。如果需要执行比较耗时的任务（如下载文件、查询数据库），可创建其他线程来处理。</p>
+<h3 id="TaskDispatcher"><a href="#TaskDispatcher" class="headerlink" title="TaskDispatcher"></a>TaskDispatcher</h3><p>可以使用“TaskDispatcher”来分发不同的任务。TaskDispatcher是一个任务分发器，它是Ability分发任务的基本接口，隐藏任务所在线程的实现细节。为保证应用有更好的响应性，我们需要设计任务的优先级。在UI线程上运行的任务默认以高优先级运行，如果某个任务无需等待结果，则可以用低优先级。</p>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>详细描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HIGH</td>
+<td>最高任务优先级，比默认优先级、低优先级的任务有更高的几率得到执行。</td>
+</tr>
+<tr>
+<td>DEFAULT</td>
+<td>默认任务优先级， 比低优先级的任务有更高的几率得到执行。</td>
+</tr>
+<tr>
+<td>LOW</td>
+<td>低任务优先级，比高优先级、默认优先级的任务有更低的几率得到执行。</td>
+</tr>
+</tbody></table>
+<p>TaskDispatcher具有多种实现，每种实现对应不同的任务分发器。在分发任务时可以指定任务的优先级，由同一个任务分发器分发出的任务具有相同的优先级。</p>
+<ul>
+<li><p>GlobalTaskDispatcher</p>
+<p>全局并发任务分发器，由Ability执行getGlobalTaskDispatcher()获取。适用于任务之间没有联系的情况。一个应用只有一个GlobalTaskDispatcher，它在程序结束时才被销毁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">TaskDispatcher</span> <span class="variable">globalTaskDispatcher</span> <span class="operator">=</span> getGlobalTaskDispatcher(TaskPriority.DEFAULT);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ParallelTaskDispatcher</p>
+<p>并发任务分发器，由Ability执行createParallelTaskDispatcher()创建并返回。与GlobalTaskDispatcher不同的是，ParallelTaskDispatcher不具有全局唯一性，可以创建多个。开发者在创建或销毁dispatcher时，需要持有对应的对象引用 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">dispatcherName</span> <span class="operator">=</span> <span class="string">&quot;parallelTaskDispatcher&quot;</span>;</span><br><span class="line"><span class="type">TaskDispatcher</span> <span class="variable">parallelTaskDispatcher</span> <span class="operator">=</span> createParallelTaskDispatcher(dispatcherName, TaskPriority.DEFAULT);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SerialTaskDispatcher</p>
+<p>串行任务分发器，由Ability执行createSerialTaskDispatcher()创建并返回。由该分发器分发的所有的任务都是按顺序执行，但是执行这些任务的线程并不是固定的。如果要执行并行任务，应使用ParallelTaskDispatcher或者GlobalTaskDispatcher，而不是创建多个SerialTaskDispatcher。如果任务之间没有依赖，应使用GlobalTaskDispatcher来实现。它的创建和销毁由开发者自己管理，开发者在使用期间需要持有该对象引用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">dispatcherName</span> <span class="operator">=</span> <span class="string">&quot;serialTaskDispatcher&quot;</span>;</span><br><span class="line"><span class="type">TaskDispatcher</span> <span class="variable">serialTaskDispatcher</span> <span class="operator">=</span> createSerialTaskDispatcher(dispatcherName, TaskPriority.DEFAULT);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SpecTaskDispatcher</p>
+<p>专有任务分发器，绑定到专有线程上的任务分发器。目前已有的专有线程为UI线程，通过UITaskDispatcher进行任务分发。</p>
+<p>UITaskDispatcher：绑定到应用主线程的专有任务分发器， 由Ability执行getUITaskDispatcher()创建并返回。 由该分发器分发的所有的任务都是在主线程上按顺序执行，它在应用程序结束时被销毁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">TaskDispatcher</span> <span class="variable">uiTaskDispatcher</span> <span class="operator">=</span> getUITaskDispatcher();</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="创建八种任务"><a href="#创建八种任务" class="headerlink" title="*创建八种任务"></a>*创建八种任务</h3><h3 id="线程间通信开发"><a href="#线程间通信开发" class="headerlink" title="*线程间通信开发"></a>*线程间通信开发</h3><p>EventHandler是HarmonyOS用于处理线程间通信的一种机制，可以通过<a target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/inter-thread-overview-0000000000038958#section14681418173317">EventRunner</a>创建新线程，将耗时的操作放到新线程上执行。这样既不阻塞原来的线程，任务又可以得到合理的处理。比如：主线程使用EventHandler创建子线程，子线程做耗时的下载图片操作，下载完成后，子线程通过EventHandler通知主线程，主线程再更新UI。</p>
+<h2 id="剪切板"><a href="#剪切板" class="headerlink" title="剪切板"></a>剪切板</h2><p>SystemPasteboard提供系统剪贴板操作的相关接口，比如复制、粘贴、配置回调等。PasteData是剪贴板服务操作的数据对象，一个PasteData由若干个内容节点（PasteData.Record）和一个属性集合对象（PasteData.DataProperty）组成。Record是存放剪贴板数据内容信息的最小单位，每个Record都有其特定的MIME类型，如纯文本、HTML、URI、Intent。剪贴板数据的属性信息存在放PasteData.DataProperty中，包括标签、时间戳等。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/myimages/WeChat.jpg" alt="Felix/蔡济阳 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/myimages/AliPay.jpg" alt="Felix/蔡济阳 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Felix/蔡济阳
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://felixcjy.cn/2022/01/26/5%20%E7%A7%BB%E5%8A%A8%E7%AB%AF/5.2%20HarmonyOS/5.2.1%20HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/Ability%E6%A1%86%E6%9E%B6/" title="Harmony应用开发基础-Ability框架">https://felixcjy.cn/2022/01/26/5 移动端/5.2 HarmonyOS/5.2.1 HarmonyOS应用开发/Ability框架/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN,en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/" rel="tag"># HarmonyOS应用开发</a>
+              <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" rel="tag"># 移动端</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/01/25/5%20%E7%A7%BB%E5%8A%A8%E7%AB%AF/5.2%20HarmonyOS/5.2.1%20HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/UI/" rel="prev" title="Harmony应用开发基础-UI">
+                  <i class="fa fa-chevron-left"></i> Harmony应用开发基础-UI
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/01/27/5%20%E7%A7%BB%E5%8A%A8%E7%AB%AF/5.2%20HarmonyOS/5.2.1%20HarmonyOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/%E5%85%A8%E5%A5%97%E7%AC%94%E8%AE%B0/" rel="next" title="Harmony应用开发笔记-全套笔记（更新中）">
+                  Harmony应用开发笔记-全套笔记（更新中） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">豫ICP备20018119号-1 </a>
+      <img src="/myimages/beian.png" alt=""><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41152302000155" rel="noopener" target="_blank">41152302000155 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2018 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Felix/蔡济阳</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Caijiyang" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
