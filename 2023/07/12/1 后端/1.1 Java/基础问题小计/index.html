@@ -19,30 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"felixcjy.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Redis 脚本使用 Lua 解释器来执行脚本。 Reids 2.6 版本通过内嵌支持 Lua 环境。执行脚本的常用命令为 EVAL。 语法 Eval 命令的基本语法如下： 1redis 127.0.0.1:6379&gt; EVAL script numkeys key [key ...] arg [arg ...]">
+    <meta name="description" content="包含容易忘记或者混淆的概念性知识点。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis 脚本">
-<meta property="og:url" content="https://felixcjy.cn/2022/01/02/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.4%20%E4%B8%AD%E9%97%B4%E4%BB%B6/1.1.4.1%20%E7%BC%93%E5%AD%98/1.1.4.1.1%20Redis/Redis%E8%84%9A%E6%9C%AC/index.html">
+<meta property="og:title" content="基础问题小计">
+<meta property="og:url" content="https://felixcjy.cn/2023/07/12/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98%E5%B0%8F%E8%AE%A1/index.html">
 <meta property="og:site_name" content="软件工程学习记录">
-<meta property="og:description" content="Redis 脚本使用 Lua 解释器来执行脚本。 Reids 2.6 版本通过内嵌支持 Lua 环境。执行脚本的常用命令为 EVAL。 语法 Eval 命令的基本语法如下： 1redis 127.0.0.1:6379&gt; EVAL script numkeys key [key ...] arg [arg ...]">
+<meta property="og:description" content="包含容易忘记或者混淆的概念性知识点。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-01-02T00:16:35.000Z">
-<meta property="article:modified_time" content="2023-07-12T03:18:20.916Z">
+<meta property="article:published_time" content="2023-07-12T12:27:30.000Z">
+<meta property="article:modified_time" content="2023-07-15T02:54:27.256Z">
 <meta property="article:author" content="Felix&#x2F;蔡济阳">
-<meta property="article:tag" content="中间件">
-<meta property="article:tag" content="缓存">
-<meta property="article:tag" content="Redis">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://felixcjy.cn/2022/01/02/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.4%20%E4%B8%AD%E9%97%B4%E4%BB%B6/1.1.4.1%20%E7%BC%93%E5%AD%98/1.1.4.1.1%20Redis/Redis%E8%84%9A%E6%9C%AC/">
+<link rel="canonical" href="https://felixcjy.cn/2023/07/12/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98%E5%B0%8F%E8%AE%A1/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://felixcjy.cn/2022/01/02/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.4%20%E4%B8%AD%E9%97%B4%E4%BB%B6/1.1.4.1%20%E7%BC%93%E5%AD%98/1.1.4.1.1%20Redis/Redis%E8%84%9A%E6%9C%AC/","path":"2022/01/02/1 后端/1.1 Java/1.1.4 中间件/1.1.4.1 缓存/1.1.4.1.1 Redis/Redis脚本/","title":"Redis 脚本"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://felixcjy.cn/2023/07/12/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98%E5%B0%8F%E8%AE%A1/","path":"2023/07/12/1 后端/1.1 Java/基础问题小计/","title":"基础问题小计"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Redis 脚本 | 软件工程学习记录</title>
+<title>基础问题小计 | 软件工程学习记录</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -117,7 +115,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E8%84%9A%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">Redis 脚本命令</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#StringBuffer-%E5%92%8C-StringBuilder-%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">StringBuffer 和 StringBuilder 类的区别是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8E%A5%E5%8F%A3"><span class="nav-number">2.</span> <span class="nav-text">抽象类、接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-number">3.</span> <span class="nav-text">集合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-%E6%95%B0%E7%BB%84"><span class="nav-number">3.1.</span> <span class="nav-text">ArrayList 数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LinkedList-%E9%93%BE%E8%A1%A8"><span class="nav-number">3.2.</span> <span class="nav-text">LinkedList 链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashSet"><span class="nav-number">3.3.</span> <span class="nav-text">HashSet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">3.4.</span> <span class="nav-text">HashMap</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -132,18 +130,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -199,7 +197,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://felixcjy.cn/2022/01/02/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.4%20%E4%B8%AD%E9%97%B4%E4%BB%B6/1.1.4.1%20%E7%BC%93%E5%AD%98/1.1.4.1.1%20Redis/Redis%E8%84%9A%E6%9C%AC/">
+    <link itemprop="mainEntityOfPage" href="https://felixcjy.cn/2023/07/12/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98%E5%B0%8F%E8%AE%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/myimages/Pixels_trophy.png">
@@ -212,12 +210,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Redis 脚本 | 软件工程学习记录">
+      <meta itemprop="name" content="基础问题小计 | 软件工程学习记录">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Redis 脚本
+          基础问题小计
         </h1>
 
         <div class="post-meta-container">
@@ -228,14 +226,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-01-02 08:16:35" itemprop="dateCreated datePublished" datetime="2022-01-02T08:16:35+08:00">2022-01-02</time>
+      <time title="创建时间：2023-07-12 20:27:30" itemprop="dateCreated datePublished" datetime="2023-07-12T20:27:30+08:00">2023-07-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-12 11:18:20" itemprop="dateModified" datetime="2023-07-12T11:18:20+08:00">2023-07-12</time>
+      <time title="修改时间：2023-07-15 10:54:27" itemprop="dateModified" datetime="2023-07-15T10:54:27+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -249,18 +247,6 @@
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/1-%E5%90%8E%E7%AB%AF/1-1-Java/" itemprop="url" rel="index"><span itemprop="name">1.1 Java</span></a>
         </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/1-%E5%90%8E%E7%AB%AF/1-1-Java/1-1-4-%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">1.1.4 中间件</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/1-%E5%90%8E%E7%AB%AF/1-1-Java/1-1-4-%E4%B8%AD%E9%97%B4%E4%BB%B6/1-1-4-1-%E7%BC%93%E5%AD%98/" itemprop="url" rel="index"><span itemprop="name">1.1.4.1 缓存</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/1-%E5%90%8E%E7%AB%AF/1-1-Java/1-1-4-%E4%B8%AD%E9%97%B4%E4%BB%B6/1-1-4-1-%E7%BC%93%E5%AD%98/1-1-4-1-1-Redis/" itemprop="url" rel="index"><span itemprop="name">1.1.4.1.1 Redis</span></a>
-        </span>
     </span>
 
   
@@ -272,51 +258,45 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Redis 脚本使用 Lua 解释器来执行脚本。 Reids 2.6 版本通过内嵌支持 Lua 环境。执行脚本的常用命令为 <strong>EVAL</strong>。</p>
-<p><strong>语法</strong></p>
-<p>Eval 命令的基本语法如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; EVAL script numkeys key [key ...] arg [arg ...]</span><br></pre></td></tr></table></figure>
-
+    <div class="post-body" itemprop="articleBody"><p>包含容易忘记或者混淆的概念性知识点。</p>
 <span id="more"></span>
 
-<p><strong>实例</strong></p>
-<p>以下实例演示了 redis 脚本工作过程：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; EVAL &quot;return &#123;KEYS[1],KEYS[2],ARGV[1],ARGV[2]&#125;&quot; 2 key1 key2 first second</span><br><span class="line"></span><br><span class="line">1) &quot;key1&quot;</span><br><span class="line">2) &quot;key2&quot;</span><br><span class="line">3) &quot;first&quot;</span><br><span class="line">4) &quot;second&quot;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="Redis-脚本命令"><a href="#Redis-脚本命令" class="headerlink" title="Redis 脚本命令"></a>Redis 脚本命令</h2><p>下表列出了 redis 脚本常用命令：</p>
-<table>
-<thead>
-<tr>
-<th align="left">序号</th>
-<th align="left">命令及描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">1</td>
-<td align="left">EVAL script numkeys key [key …] arg [arg …] 执行 Lua 脚本。</td>
-</tr>
-<tr>
-<td align="left">2</td>
-<td align="left">EVALSHA sha1 numkeys key [key …] arg [arg …] 执行 Lua 脚本。</td>
-</tr>
-<tr>
-<td align="left">3</td>
-<td align="left">SCRIPT EXISTS script script …\ 查看指定的脚本是否已经被保存在缓存当中。</td>
-</tr>
-<tr>
-<td align="left">4</td>
-<td align="left">SCRIPT FLUSH 从脚本缓存中移除所有脚本。</td>
-</tr>
-<tr>
-<td align="left">5</td>
-<td align="left">SCRIPT KILL 杀死当前正在运行的 Lua 脚本。</td>
-</tr>
-<tr>
-<td align="left">6</td>
-<td align="left">SCRIPT LOAD script将脚本 script 添加到脚本缓存中，但并不立即执行这个脚本。</td>
-</tr>
-</tbody></table>
+<h1 id="StringBuffer-和-StringBuilder-类的区别是什么"><a href="#StringBuffer-和-StringBuilder-类的区别是什么" class="headerlink" title="StringBuffer 和 StringBuilder 类的区别是什么"></a>StringBuffer 和 StringBuilder 类的区别是什么</h1><p><code>StringBuilder</code>不是线程安全的，但是运行速度<strong>快</strong>，所以推荐使用<code>StringBuilder </code>。</p>
+<h1 id="抽象类、接口"><a href="#抽象类、接口" class="headerlink" title="抽象类、接口"></a>抽象类、接口</h1><p>抽象类，说白了和普通类只有一个区别：不能实例化。</p>
+<p>接口，只是定义<code>抽象</code>方法，没有构造方法，支持多继承；成员变量只能是：<code>public static final</code>类型的。接口是 <code>隐式抽象</code> 的。方法全部都是公有的。</p>
+<p>一个类只能 <code>继承</code> 一个抽象类，但可以 <code>实现</code> 多个接口。</p>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h2 id="ArrayList-数组"><a href="#ArrayList-数组" class="headerlink" title="ArrayList 数组"></a>ArrayList 数组</h2><p>增加<code>add</code>，删除<code>remove</code>，修改<code>set</code>，查询<code>get</code></p>
+<p>排序</p>
+<ul>
+<li>升序：<code>arrayList.sort(Comparator.naturalOrder())</code></li>
+<li>降序：<code>arrayList.sort(Comparator.reverseOrder())</code></li>
+</ul>
+<h2 id="LinkedList-链表"><a href="#LinkedList-链表" class="headerlink" title="LinkedList 链表"></a>LinkedList 链表</h2><p>逐一添加 <code>add</code>，添加头<code>addFrist</code>，移除头<code>removeFirst</code>，移除尾<code>removeLast</code>，获取头<code>getFirst</code>，获取尾<code>getLast</code></p>
+<ul>
+<li>实现了 <code>Queue</code> 接口，可作为队列使用</li>
+<li>实现了 <code>Deque</code> 接口，可作为队列使用</li>
+<li>实现了 <code>List</code> 接口，可进行列表的相关操作</li>
+<li>实现了 <code>Cloneable</code> 接口，可实现克隆</li>
+<li>实现了 <code>java.io.Serializable</code> 接口，即可支持序列化，能通过序列化去传输</li>
+</ul>
+<h2 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h2><ul>
+<li>基于 HashMap</li>
+<li>不允许重复元素的集合</li>
+<li>允许 null</li>
+<li>无序</li>
+<li>非线程安全</li>
+</ul>
+<p>添加<code>add</code>，判断存在<code>contains</code>，删除<code>remove</code>，清空<code>clear</code></p>
+<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><ul>
+<li>散列表，Key-Value 映射，可以不同类型，可以泛型指定。</li>
+<li>无序</li>
+</ul>
+<p>添加<code>put</code>，获取<code>get</code>，删除<code>remove</code></p>
+<p>迭代</p>
+<ul>
+<li>只获取 key : <code>KeySet()</code></li>
+<li>只获取 value : <code>values()</code></li>
+</ul>
 
     </div>
 
@@ -352,7 +332,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://felixcjy.cn/2022/01/02/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.4%20%E4%B8%AD%E9%97%B4%E4%BB%B6/1.1.4.1%20%E7%BC%93%E5%AD%98/1.1.4.1.1%20Redis/Redis%E8%84%9A%E6%9C%AC/" title="Redis 脚本">https://felixcjy.cn/2022/01/02/1 后端/1.1 Java/1.1.4 中间件/1.1.4.1 缓存/1.1.4.1.1 Redis/Redis脚本/</a>
+      <a href="https://felixcjy.cn/2023/07/12/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98%E5%B0%8F%E8%AE%A1/" title="基础问题小计">https://felixcjy.cn/2023/07/12/1 后端/1.1 Java/基础问题小计/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN,en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -361,22 +341,20 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag"># 中间件</a>
-              <a href="/tags/%E7%BC%93%E5%AD%98/" rel="tag"># 缓存</a>
-              <a href="/tags/Redis/" rel="tag"># Redis</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/01/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.4%20%E4%B8%AD%E9%97%B4%E4%BB%B6/1.1.4.1%20%E7%BC%93%E5%AD%98/1.1.4.1.1%20Redis/Redis%E4%BA%8B%E5%8A%A1/" rel="prev" title="Redis 事务">
-                  <i class="fa fa-chevron-left"></i> Redis 事务
+                <a href="/2023/07/12/6%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/6.1%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Socket-Cookie-Session/" rel="prev" title="Socket-Cookie-Session">
+                  <i class="fa fa-chevron-left"></i> Socket-Cookie-Session
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/02/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.4%20%E4%B8%AD%E9%97%B4%E4%BB%B6/1.1.4.1%20%E7%BC%93%E5%AD%98/1.1.4.1.1%20Redis/Redis%E8%BF%9E%E6%8E%A5/" rel="next" title="Redis 连接">
-                  Redis 连接 <i class="fa fa-chevron-right"></i>
+                <a href="/2023/08/11/6%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="next" title="数据结构和算法（构建中...）">
+                  数据结构和算法（构建中...） <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

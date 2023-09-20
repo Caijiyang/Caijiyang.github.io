@@ -19,30 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"felixcjy.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Redis 6.0安装。">
+    <meta name="description" content="网络协议网络协议的含义是：计算机和网络设备之间相互通信的规则和标准。 常见的协议：TCP&#x2F;IP、Http、FTP SocketSocket 是网络分布式编程中的概念，是进程间通信的一种方式。本质上是一组数据结构和与之关联的一组编程接口，将传输层和应用层协议相结合，使得程序员可以通过 Socket 编程接口来实现网络通信和协议交互。 CookieCookie是一种在Web应用中进行状态管理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis 配置">
-<meta property="og:url" content="https://felixcjy.cn/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.4%20%E4%B8%AD%E9%97%B4%E4%BB%B6/1.1.4.1%20%E7%BC%93%E5%AD%98/1.1.4.1.1%20Redis/Redis%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:title" content="Socket-Cookie-Session">
+<meta property="og:url" content="https://felixcjy.cn/2023/07/12/6%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/6.1%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Socket-Cookie-Session/index.html">
 <meta property="og:site_name" content="软件工程学习记录">
-<meta property="og:description" content="Redis 6.0安装。">
+<meta property="og:description" content="网络协议网络协议的含义是：计算机和网络设备之间相互通信的规则和标准。 常见的协议：TCP&#x2F;IP、Http、FTP SocketSocket 是网络分布式编程中的概念，是进程间通信的一种方式。本质上是一组数据结构和与之关联的一组编程接口，将传输层和应用层协议相结合，使得程序员可以通过 Socket 编程接口来实现网络通信和协议交互。 CookieCookie是一种在Web应用中进行状态管理">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-02-20T03:23:33.000Z">
-<meta property="article:modified_time" content="2023-07-12T03:17:26.819Z">
+<meta property="article:published_time" content="2023-07-12T07:09:50.000Z">
+<meta property="article:modified_time" content="2023-07-12T07:16:24.652Z">
 <meta property="article:author" content="Felix&#x2F;蔡济阳">
-<meta property="article:tag" content="中间件">
-<meta property="article:tag" content="缓存">
-<meta property="article:tag" content="Redis">
+<meta property="article:tag" content="Java,Go,Unity,Vue,HarmonyOS,博客,蔡济阳的博客">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://felixcjy.cn/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.4%20%E4%B8%AD%E9%97%B4%E4%BB%B6/1.1.4.1%20%E7%BC%93%E5%AD%98/1.1.4.1.1%20Redis/Redis%E5%AE%89%E8%A3%85/">
+<link rel="canonical" href="https://felixcjy.cn/2023/07/12/6%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/6.1%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Socket-Cookie-Session/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://felixcjy.cn/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.4%20%E4%B8%AD%E9%97%B4%E4%BB%B6/1.1.4.1%20%E7%BC%93%E5%AD%98/1.1.4.1.1%20Redis/Redis%E5%AE%89%E8%A3%85/","path":"2022/02/20/1 后端/1.1 Java/1.1.4 中间件/1.1.4.1 缓存/1.1.4.1.1 Redis/Redis安装/","title":"Redis 配置"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://felixcjy.cn/2023/07/12/6%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/6.1%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Socket-Cookie-Session/","path":"2023/07/12/6 计算机基础/6.1 计算机网络/Socket-Cookie-Session/","title":"Socket-Cookie-Session"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Redis 配置 | 软件工程学习记录</title>
+<title>Socket-Cookie-Session | 软件工程学习记录</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -104,7 +102,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -117,6 +115,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text">网络协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Socket"><span class="nav-number">2.</span> <span class="nav-text">Socket</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cookie"><span class="nav-number">3.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Session"><span class="nav-number">4.</span> <span class="nav-text">Session</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -131,18 +130,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -198,7 +197,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://felixcjy.cn/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.4%20%E4%B8%AD%E9%97%B4%E4%BB%B6/1.1.4.1%20%E7%BC%93%E5%AD%98/1.1.4.1.1%20Redis/Redis%E5%AE%89%E8%A3%85/">
+    <link itemprop="mainEntityOfPage" href="https://felixcjy.cn/2023/07/12/6%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/6.1%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Socket-Cookie-Session/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/myimages/Pixels_trophy.png">
@@ -211,12 +210,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Redis 配置 | 软件工程学习记录">
+      <meta itemprop="name" content="Socket-Cookie-Session | 软件工程学习记录">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Redis 配置
+          Socket-Cookie-Session
         </h1>
 
         <div class="post-meta-container">
@@ -226,15 +225,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2022-02-20 11:23:33" itemprop="dateCreated datePublished" datetime="2022-02-20T11:23:33+08:00">2022-02-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-12 11:17:26" itemprop="dateModified" datetime="2023-07-12T11:17:26+08:00">2023-07-12</time>
+      <time title="创建时间：2023-07-12 15:09:50 / 修改时间：15:16:24" itemprop="dateCreated datePublished" datetime="2023-07-12T15:09:50+08:00">2023-07-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -242,23 +235,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/1-%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">1 后端</span></a>
+          <a href="/categories/6-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">6 计算机基础</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/1-%E5%90%8E%E7%AB%AF/1-1-Java/" itemprop="url" rel="index"><span itemprop="name">1.1 Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/1-%E5%90%8E%E7%AB%AF/1-1-Java/1-1-4-%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">1.1.4 中间件</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/1-%E5%90%8E%E7%AB%AF/1-1-Java/1-1-4-%E4%B8%AD%E9%97%B4%E4%BB%B6/1-1-4-1-%E7%BC%93%E5%AD%98/" itemprop="url" rel="index"><span itemprop="name">1.1.4.1 缓存</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/1-%E5%90%8E%E7%AB%AF/1-1-Java/1-1-4-%E4%B8%AD%E9%97%B4%E4%BB%B6/1-1-4-1-%E7%BC%93%E5%AD%98/1-1-4-1-1-Redis/" itemprop="url" rel="index"><span itemprop="name">1.1.4.1.1 Redis</span></a>
+          <a href="/categories/6-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/6-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">6.1 计算机网络</span></a>
         </span>
     </span>
 
@@ -271,49 +252,16 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Redis 6.0安装。</p>
-<span id="more"></span>
-
-<p>下载安装包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xzf redis。。。</span><br></pre></td></tr></table></figure>
-
-<p>首先，安装依赖</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc-c++ automake autoconf</span><br><span class="line">yum install cpp</span><br><span class="line">yum install binutils</span><br><span class="line">yum install glibc</span><br><span class="line">yum install glibc-kernheaders</span><br><span class="line">yum install glibc-common</span><br><span class="line">yum install glibc-devel</span><br><span class="line">yum install gcc</span><br><span class="line">yum install make</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>安装 6.0.x 版本报错，是由于 gcc 版本太低。</p>
-<p>自 redis 6.0.0 之后，编译 redis 需要支持 C11 特性，C11 特性在 4.9 中被引入。<br>Centos7 默认 gcc 版本为 4.8.5，所以需要升级gcc版本。</p>
-<p>解决办法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ make tcl</span><br><span class="line">yum -y install centos-release-scl</span><br><span class="line">yum -y install devtoolset-9-gcc devtoolset-9-gcc-c++ devtoolset-9-binutils</span><br><span class="line">scl <span class="built_in">enable</span> devtoolset-9 bash</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看gcc版本centos7.9默认安装4.8.5 </span></span><br><span class="line">gcc -v</span><br><span class="line"><span class="comment"># 一般要升级gcc到5.3及以上,如下：</span></span><br><span class="line"><span class="comment">#升级到gcc 9.3：</span></span><br><span class="line">yum -y install centos-release-scl</span><br><span class="line">yum -y install devtoolset-9-gcc devtoolset-9-gcc-c++ devtoolset-9-binutils</span><br><span class="line"><span class="comment">#切换到gcc 9.3版本</span></span><br><span class="line">scl <span class="built_in">enable</span> devtoolset-9 bash</span><br><span class="line">需要注意的是scl命令启用只是临时的，退出shell或重启就会恢复原系统gcc版本。</span><br><span class="line">如果要长期使用gcc 9.3的话：</span><br><span class="line"><span class="comment">#设置永久升级：</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;source /opt/rh/devtoolset-9/enable&quot;</span> &gt;&gt;/etc/profile</span><br><span class="line">这样退出shell重新打开就是新版的gcc了</span><br><span class="line">其他版本同理,修改devtoolset版本号即可 </span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>创建文件夹</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /usr/local/redis</span><br></pre></td></tr></table></figure>
-
-<p>安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make PREFIX=/usr/local/redis/  install</span><br></pre></td></tr></table></figure>
-
-<p>前台启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./redis-server</span><br></pre></td></tr></table></figure>
-
-<p>拷贝配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> redis.conf /usr/local/redis/bin/</span><br></pre></td></tr></table></figure>
-
-<p>修改配置文件</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">vim</span> redis.config</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">daemonize yes // 从 no 改为 yes，表示后台运行</span><br></pre></td></tr></table></figure>
-
-<p>后台启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./redis-server redis.conf</span><br></pre></td></tr></table></figure>
-
-<p>关闭后台 redis</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep redis</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -9 【pid号码】</span><br></pre></td></tr></table></figure>
-
+    <div class="post-body" itemprop="articleBody"><h1 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h1><p>网络协议的含义是：计算机和网络设备之间相互通信的规则和标准。</p>
+<p>常见的协议：TCP&#x2F;IP、Http、FTP</p>
+<h1 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h1><p>Socket 是网络分布式编程中的概念，是进程间通信的一种方式。本质上是一组数据结构和与之关联的一组编程接口，将传输层和应用层协议相结合，使得程序员可以通过 Socket 编程接口来实现网络通信和协议交互。</p>
+<h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><p>Cookie是一种在Web应用中进行状态管理的技术，它可以为用户在浏览器中存储一些信息。例如，我们平常使用的网站会在我们登录时使用Cookie来记录我们的用户名和密码，在下一次访问时直接携带Cookie信息，无需重新登录。由于Cookie是在浏览器中存储的，所以它具有跨浏览器和跨域名的优势。</p>
+<p>在实际应用中，Cookie通常是由服务器端生成并在HTTP响应头中发送给浏览器，浏览器被保存的Cookie信息包含了Cookie的名称、值、过期时间、域名以及路径等信息。通过读取Cookie信息，Web应用能够快速获取用户的状态，并为用户提供个性化的服务和体验。但同时，Cookie也存在一些安全问题，例如，用户的敏感信息可能会被存储在Cookie中，并被攻击者获取。</p>
+<h1 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h1><p>Session是一种在Web应用中管理用户状态的技术，它通过在服务器端创建一个唯一的标识来跟踪用户的会话状态。在用户进行登录后，服务器会生成一个Session ID，然后将此ID保存在Cookie或者URL的参数中，在之后的请求中，服务器通过Session ID来获取对应用户的状态信息。这种方式能够有效地管理用户的会话状态，防止攻击者进行伪造身份和篡改信息等行为。</p>
+<p>在实际应用中，Session通常是由服务器端进行管理和维护的。例如，服务器会为每个用户创建一个Session对象，然后在每次用户请求时通过Session ID来获取对应的Session对象。Session对象中包括用户状态信息、会话过期时间、登录的用户信息等等。通过使用Session技术，Web应用能够提供更为安全的用户登录和状态管理功能。</p>
+<blockquote>
+<p>部分内容来源说明：<br>版权声明：本文为CSDN博主「NasaYIN」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/canshanyin/article/details/130551489">https://blog.csdn.net/canshanyin/article/details/130551489</a></p>
+</blockquote>
 
     </div>
 
@@ -349,7 +297,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://felixcjy.cn/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.4%20%E4%B8%AD%E9%97%B4%E4%BB%B6/1.1.4.1%20%E7%BC%93%E5%AD%98/1.1.4.1.1%20Redis/Redis%E5%AE%89%E8%A3%85/" title="Redis 配置">https://felixcjy.cn/2022/02/20/1 后端/1.1 Java/1.1.4 中间件/1.1.4.1 缓存/1.1.4.1.1 Redis/Redis安装/</a>
+      <a href="https://felixcjy.cn/2023/07/12/6%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/6.1%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Socket-Cookie-Session/" title="Socket-Cookie-Session">https://felixcjy.cn/2023/07/12/6 计算机基础/6.1 计算机网络/Socket-Cookie-Session/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN,en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -357,23 +305,18 @@
 </ul>
 </div>
 
-          <div class="post-tags">
-              <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag"># 中间件</a>
-              <a href="/tags/%E7%BC%93%E5%AD%98/" rel="tag"># 缓存</a>
-              <a href="/tags/Redis/" rel="tag"># Redis</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/02/20/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/1.1.3%20SpringBoot/SpringBootStarter%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" rel="prev" title="Spring Boot Starter 的工作原理">
-                  <i class="fa fa-chevron-left"></i> Spring Boot Starter 的工作原理
+                <a href="/2023/07/12/7%20%E9%97%AE%E9%A2%98%E7%A7%AF%E7%B4%AF/Hexo-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/" rel="prev" title="Hexo 博客搭建流程">
+                  <i class="fa fa-chevron-left"></i> Hexo 博客搭建流程
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/02/23/7%20%E9%97%AE%E9%A2%98%E7%A7%AF%E7%B4%AF/%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%E5%B7%A5%E4%BD%9C/" rel="next" title="博客迁移工作">
-                  博客迁移工作 <i class="fa fa-chevron-right"></i>
+                <a href="/2023/07/12/1%20%E5%90%8E%E7%AB%AF/1.1%20Java/%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98%E5%B0%8F%E8%AE%A1/" rel="next" title="基础问题小计">
+                  基础问题小计 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
